@@ -1,0 +1,7 @@
+<h1>TotFet - Login</h1>
+<input type="text" [(ngModel)]="textInput" />
+<button (click)="sendRequest()">Enviar</button>
+
+@if (showError) {
+<h3>Incorrect password</h3>
+}

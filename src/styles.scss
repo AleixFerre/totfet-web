@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Open Sans";
+  src: url(assets/fonts/OpenSans/OpenSans-Regular.ttf) format("truetype");
+}
+
+body {
+  font-family: "Open Sans", system-ui, monospaced;
+  font-weight: normal;
+}
