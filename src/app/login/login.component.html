@@ -1,7 +1,20 @@
-<h1>TotFet - Login</h1>
-<input type="text" [(ngModel)]="textInput" />
-<button (click)="sendRequest()">Enviar</button>
+<div class="centered">
+  <h1 class="title">Tot Fet</h1>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      [formControl]="password"
+      type="password"
+      placeholder="Password"
+      required
+    />
+    @if (password.hasError('required')) {
+      <mat-error>Password is Required</mat-error>
+    }
+  </mat-form-field>
 
-@if (showError) {
-<h3>Incorrect password</h3>
-}
+  <button mat-raised-button color="primary" (click)="sendRequest()">
+    Login
+  </button>
+</div>

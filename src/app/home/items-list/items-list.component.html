@@ -1,24 +1,9 @@
-@if (items | async; as products) {
-<table>
-  <tbody>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Amount</th>
-      <th>Open</th>
-    </tr>
-    @for (product of products; track product.id) {
-    <tr>
-      <td>{{ product.id }}</td>
-      <td>{{ product.name }}</td>
-      <td>{{ product.amount }}</td>
-      <td>{{ product.open }}</td>
-    </tr>
-    } @empty {
-    <td colspan="4" class="error">No results yet!</td>
-    }
-  </tbody>
-</table>
+@if (itemsSubject.value; as items) {
+  @for (item of items; track $index) {
+    <div class="card">
+      <span>{{item.name}} - {{item.amount}}</span>
+    </div>
+  }
 } @else {
 <p>Loading...</p>
 }

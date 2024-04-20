@@ -1,9 +1,18 @@
-table,
-td {
-  border: 1px solid black;
-  min-width: 10vw;
-}
-
 .error {
   min-width: 40vw;
+}
+
+.card {
+  margin: 1rem;
+  padding: 0.5rem;
+  background-color: black;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+
+  .title {
+    font-size: large;
+  }
 }
