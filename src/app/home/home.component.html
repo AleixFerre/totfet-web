@@ -1,10 +1,25 @@
-<p class="title">Llista de la compra</p>
+<p class="title">Tot Fet</p>
 
-<mat-tab-group>
+<mat-tab-group
+  [selectedIndex]="defaultSelectedIndex"
+  (selectedTabChange)="onChangeTab($event)"
+>
   <mat-tab label="Buy">
+    @if (itemsService.isLoading) {
+      <mat-progress-bar class="top" mode="indeterminate"></mat-progress-bar>
+      <p></p>
+    }
     <app-items-list></app-items-list>
   </mat-tab>
   <mat-tab label="Edit">
-    <app-items-list></app-items-list>
+    @if (itemsService.isLoading) {
+      <mat-progress-bar class="top" mode="indeterminate"></mat-progress-bar>
+      <p></p>
+    }
+    <app-items-edit-list></app-items-edit-list>
   </mat-tab>
 </mat-tab-group>
+
+<button mat-fab color="primary" class="add-button" (click)="openAddMenu()">
+  <mat-icon>add</mat-icon>
+</button>

@@ -1,6 +1,6 @@
 <div class="centered">
   <h1 class="title">Tot Fet</h1>
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill" class="input">
     <mat-label>Password</mat-label>
     <input
       matInput
@@ -10,11 +10,11 @@
       required
     />
     @if (password.hasError('required')) {
-      <mat-error>Password is Required</mat-error>
+    <mat-error>Password is Required</mat-error>
     }
   </mat-form-field>
 
-  <button mat-raised-button color="primary" (click)="sendRequest()">
+  <button mat-raised-button color="primary" [disabled]="password.invalid" (click)="sendRequest()">
     Login
   </button>
 </div>

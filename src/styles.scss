@@ -11,11 +11,12 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$totfet-web-primary: mat.define-palette(mat.$teal-palette);
-$totfet-web-accent: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+$totfet-web-primary: mat.define-palette(mat.$orange-palette, A100, A200, A400);
+$totfet-web-accent: mat.define-palette(mat.$teal-palette);
 
 // The warn palette is optional (defaults to red).
 $totfet-web-warn: mat.define-palette(mat.$red-palette);
+$totfet-web-success: mat.define-palette(mat.$light-green-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
@@ -25,6 +26,7 @@ $totfet-web-theme: mat.define-dark-theme(
       primary: $totfet-web-primary,
       accent: $totfet-web-accent,
       warn: $totfet-web-warn,
+      success: $totfet-web-success,
     ),
     typography: mat.define-typography-config(),
     density: 0,
@@ -43,6 +45,6 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: rgb(32, 32, 32);
-  color: white;
+  background-color: #2c2c2c;
+  color: #ebebeb;
 }

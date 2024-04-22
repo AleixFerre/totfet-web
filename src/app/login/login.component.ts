@@ -37,8 +37,6 @@ export class LoginComponent {
   ) {}
 
   sendRequest() {
-    if (this.password.invalid) return;
-
     this.snackBarRef?.dismiss();
     this.loginService.login(this.password.value!).subscribe({
       complete: () => {

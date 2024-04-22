@@ -1,0 +1,19 @@
+@if (openItems | async; as items) {
+  <h4 class="title">Open</h4>
+
+  @for (item of openItems | async; track $index) {
+    <div class="card">
+      <span>{{item.name}} - {{item.amount}}</span>
+    </div>
+  }
+
+  <mat-divider></mat-divider>
+
+  <h4 class="title">Closed</h4>
+
+  @for (item of closedItems | async; track $index) {
+    <div class="card">
+      <span>{{item.name}} - {{item.amount}}</span>
+    </div>
+  }
+}

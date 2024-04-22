@@ -1,9 +1,7 @@
-@if (itemsSubject.value; as items) {
+@if (items | async; as items) {
   @for (item of items; track $index) {
     <div class="card">
       <span>{{item.name}} - {{item.amount}}</span>
     </div>
   }
-} @else {
-<p>Loading...</p>
 }
