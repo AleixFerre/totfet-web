@@ -2,22 +2,11 @@
   min-width: 40vw;
 }
 
-.card {
-  margin: 1rem;
-  padding: 0.5rem;
-  background-color: #414141;
-  color: #bebebe;
-  box-shadow: #00000080 2px 1px 5px 0px;
-  font-weight: 500;
-  font-size: large;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2rem;
-}
-
 .label {
   margin-left: 1rem;
   margin-bottom: 2rem;
+}
+
+.final {
+  height: 5rem;
 }

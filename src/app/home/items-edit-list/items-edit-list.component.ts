@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { filter, map, switchMap } from 'rxjs';
+import { CardComponent } from '../../shared/card/card.component';
 import { ItemsListService } from '../items-list/items-list.service';
 import { DeleteClosedComponent } from './delete-closed/delete-closed.component';
 import { NewItemComponent } from './new-item/new-item.component';
@@ -26,6 +27,7 @@ import { NewItemComponent } from './new-item/new-item.component';
     MatIconModule,
     MatTooltipModule,
     MatDialogModule,
+    CardComponent
   ],
   templateUrl: './items-edit-list.component.html',
   styleUrl: './items-edit-list.component.scss',

@@ -1,0 +1,32 @@
+.card {
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #414141;
+  color: #bebebe;
+  box-shadow: #00000080 2px 1px 5px 0px;
+  font-weight: 500;
+  font-size: large;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+
+  .amount {
+    width: 1.5rem;
+    font-size: large;
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+
+  .name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .icon {
+    flex: 0 0 auto;
+  }
+
+  .divider {
+    flex: 1;
+  }
+}
