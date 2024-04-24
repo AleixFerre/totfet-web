@@ -17,6 +17,19 @@
   height: 2rem;
 }
 
+.title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 1rem;
+}
+
 .title {
   margin-left: 1rem;
+}
+
+.label {
+  margin-left: 1rem;
+  margin-bottom: 2rem;
 }

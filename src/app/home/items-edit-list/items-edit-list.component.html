@@ -5,15 +5,26 @@
     <div class="card">
       <span>{{item.name}} - {{item.amount}}</span>
     </div>
+  } @empty {
+    <p class="label">No items open</p>
   }
 
   <mat-divider></mat-divider>
 
-  <h4 class="title">Closed</h4>
+  <div class="title-container">
+    <h4 class="title">Closed</h4>
+    @if ((closedItems | async)?.length! > 0) {
+      <button mat-icon-button color="warn" matTooltip="Remove all closed" (click)="deleteClosed()">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    }
+  </div>
 
   @for (item of closedItems | async; track $index) {
     <div class="card">
       <span>{{item.name}} - {{item.amount}}</span>
     </div>
+  } @empty {
+    <p class="label">No items closed</p>
   }
 }

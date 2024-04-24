@@ -8,14 +8,12 @@
   <mat-tab label="Buy">
     @if (itemsService.isLoading) {
       <mat-progress-bar class="top" mode="indeterminate"></mat-progress-bar>
-      <p></p>
     }
     <app-items-list></app-items-list>
   </mat-tab>
   <mat-tab label="Edit">
     @if (itemsService.isLoading) {
       <mat-progress-bar class="top" mode="indeterminate"></mat-progress-bar>
-      <p></p>
     }
     <app-items-edit-list></app-items-edit-list>
   </mat-tab>

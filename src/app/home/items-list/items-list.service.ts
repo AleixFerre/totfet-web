@@ -15,12 +15,10 @@ export class ItemsListService {
   constructor(private http: HttpClient) {}
 
   public refreshItems(): void {
-    this.http
-      .get<Item[]>(`${url}/items`)
-      .subscribe((items) => {
-        this.isLoading = false;
-        return this._items.next(items);
-      });
+    this.http.get<Item[]>(`${url}/items`).subscribe((items) => {
+      this.isLoading = false;
+      return this._items.next(items);
+    });
   }
 
   public addItem(item: Partial<Item>): Observable<Item> {
@@ -28,6 +26,16 @@ export class ItemsListService {
     return this.http.post<Item>(`${url}/items`, item).pipe(
       tap((newItem) => {
         this._items.next([...this._items.value, newItem]);
+        this.isLoading = false;
+      })
+    );
+  }
+
+  public removeClosed() {
+    this.isLoading = true;
+    return this.http.delete<void>(`${url}/items/closed`).pipe(
+      tap(() => {
+        this._items.next(this._items.value.filter(i => i.open));
         this.isLoading = false;
       })
     );

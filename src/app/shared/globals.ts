@@ -1,4 +1,4 @@
-const USE_PROD = true;
+const USE_PROD = false;
 
 export const url = USE_PROD
   ? 'https://tot-fet-backend-production.up.railway.app'
