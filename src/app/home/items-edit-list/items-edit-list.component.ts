@@ -13,6 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { filter, map, switchMap } from 'rxjs';
 import { CardComponent } from '../../shared/card/card.component';
 import { ItemsListService } from '../items-list/items-list.service';
+import { Item } from '../items-list/items.model';
 import { DeleteClosedComponent } from './delete-closed/delete-closed.component';
 import { NewItemComponent } from './new-item/new-item.component';
 
@@ -27,7 +28,7 @@ import { NewItemComponent } from './new-item/new-item.component';
     MatIconModule,
     MatTooltipModule,
     MatDialogModule,
-    CardComponent
+    CardComponent,
   ],
   templateUrl: './items-edit-list.component.html',
   styleUrl: './items-edit-list.component.scss',
@@ -49,6 +50,12 @@ export class ItemsEditListComponent {
 
   openAddMenu() {
     this._bottomSheet.open(NewItemComponent);
+  }
+
+  openEditMenu(item: Item) {
+    this._bottomSheet.open(NewItemComponent, {
+      data: item,
+    });
   }
 
   deleteClosed() {

@@ -1,5 +1,5 @@
 <div [formGroup]="itemForm">
-  <h3>Add item</h3>
+  <h3>{{ item ? "Edit" : "Add" }} item</h3>
   <mat-form-field appearance="fill" class="input">
     <mat-label>Name</mat-label>
     <input
@@ -11,11 +11,11 @@
       placeholder="Name"
       required
     />
-    <mat-hint align="end"
-      >{{ itemForm.get("name")?.value?.length }} / 100</mat-hint
-    >
+    <mat-hint align="end">
+      {{ itemForm.get("name")?.value?.length }} / 100
+    </mat-hint>
     @if (itemForm.get('name')?.hasError('required')) {
-    <mat-error>Name is Required</mat-error>
+      <mat-error>Name is Required</mat-error>
     }
   </mat-form-field>
   <mat-form-field appearance="fill" class="input">
@@ -30,13 +30,15 @@
       required
     />
     @if (itemForm.get('amount')?.hasError('required')) {
-    <mat-error>Amount is Required</mat-error>
+      <mat-error>Amount is Required</mat-error>
     } @if (itemForm.get('amount')?.hasError('min')) {
-    <mat-error>Amount needs to be atleast 1</mat-error>
+      <mat-error>Amount needs to be atleast 1</mat-error>
     } @if (itemForm.get('amount')?.hasError('max')) {
-    <mat-error>Amount needs to be max 100</mat-error>
+      <mat-error>Amount needs to be max 100</mat-error>
     }
   </mat-form-field>
+
+  <mat-checkbox formControlName="open"> Is open </mat-checkbox>
 </div>
 
 <div class="horizontal">
@@ -44,9 +46,11 @@
     mat-raised-button
     color="primary"
     [disabled]="itemForm.invalid"
-    (click)="addItem()"
+    (click)="item ? updateItem() : addItem()"
   >
-    Add
+    {{ item ? "Save" : "Add" }}
   </button>
-  <mat-checkbox [(ngModel)]="addMore"> Add more </mat-checkbox>
+  @if (!item) {
+    <mat-checkbox [(ngModel)]="addMore"> Add more </mat-checkbox>
+  }
 </div>

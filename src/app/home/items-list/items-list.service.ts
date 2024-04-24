@@ -31,6 +31,19 @@ export class ItemsListService {
     );
   }
 
+  public editItem(item: Partial<Item>): Observable<Item> {
+    this.isLoading = true;
+    return this.http.put<Item>(`${url}/items`, item).pipe(
+      tap((newItem) => {
+        const list = [...this._items.value];
+        const index = list.findIndex((i) => i.id === item.id);
+        list[index] = newItem;
+        this._items.next(list);
+        this.isLoading = false;
+      })
+    );
+  }
+
   public removeClosed() {
     this.isLoading = true;
     return this.http.delete<void>(`${url}/items/closed`).pipe(

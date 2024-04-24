@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Edit items
+- [x] Edit items
 - [ ] Search box
 - [ ] Reordering items
 
