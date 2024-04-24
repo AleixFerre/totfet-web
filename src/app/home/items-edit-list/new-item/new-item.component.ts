@@ -55,7 +55,7 @@ export class NewItemComponent implements OnInit {
     this.itemForm.setValue({
       name: this.item?.name ?? '',
       amount: this.item?.amount ?? 1,
-      open: this.item?.open ?? null,
+      open: this.item?.open ?? true,
     });
   }
 
