@@ -1,6 +1,6 @@
 @if (items | async; as items) {
   @for (item of items; track $index) {
-    <app-card [item]="item" icon="shopping_cart"></app-card>
+    <app-card [item]="item" icon="shopping_cart" (onClick)="closeItem(item.id)"></app-card>
   } @empty {
     <p class="label">No items to buy</p>
   }

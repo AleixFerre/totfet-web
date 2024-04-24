@@ -35,7 +35,20 @@ export class ItemsListService {
     this.isLoading = true;
     return this.http.delete<void>(`${url}/items/closed`).pipe(
       tap(() => {
-        this._items.next(this._items.value.filter(i => i.open));
+        this._items.next(this._items.value.filter((i) => i.open));
+        this.isLoading = false;
+      })
+    );
+  }
+
+  public closeItem(itemId: number) {
+    this.isLoading = true;
+    return this.http.post<void>(`${url}/items/close`, { id: itemId }).pipe(
+      tap(() => {
+        const list = [...this._items.value];
+        const index = list.findIndex((item) => item.id === itemId);
+        list[index].open = false;
+        this._items.next(list);
         this.isLoading = false;
       })
     );

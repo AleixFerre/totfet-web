@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Item } from '../../home/items-list/items.model';
@@ -8,9 +8,10 @@ import { Item } from '../../home/items-list/items.model';
   standalone: true,
   imports: [MatButtonModule, MatIconModule],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss'
+  styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  @Input() public item!: Item;
-  @Input() public icon!: string;
+  @Input() item!: Item;
+  @Input() icon!: string;
+  @Output() onClick = new EventEmitter<void>();
 }
