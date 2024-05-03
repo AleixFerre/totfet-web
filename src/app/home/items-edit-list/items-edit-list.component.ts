@@ -12,9 +12,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { filter, map, switchMap } from 'rxjs';
 import { CardComponent } from '../../shared/card/card.component';
+import { CardAction } from '../../shared/card/card.model';
+import { DeleteClosedComponent } from '../../shared/popup/delete-closed/delete-closed.component';
+import { DeleteItemComponent } from '../../shared/popup/delete-item/delete-item.component';
 import { ItemsListService } from '../items-list/items-list.service';
 import { Item } from '../items-list/items.model';
-import { DeleteClosedComponent } from './delete-closed/delete-closed.component';
 import { NewItemComponent } from './new-item/new-item.component';
 
 @Component({
@@ -41,6 +43,33 @@ export class ItemsEditListComponent {
     map((items) => items.filter((i) => !i.open))
   );
 
+  readonly CardActions = [CardAction.Edit, CardAction.Delete];
+  readonly CardActionCallBack: Record<CardAction, Function> = {
+    [CardAction.Edit]: (item: Item) => {
+      this._bottomSheet.open(NewItemComponent, {
+        data: item,
+      });
+    },
+    [CardAction.Delete]: (item: Item) => {
+      this._dialog
+        .open(DeleteItemComponent, {
+          data: item
+        })
+        .afterClosed()
+        .pipe(
+          filter((accepted: boolean) => accepted),
+          switchMap(() => this.itemsService.removeItem(item))
+        )
+        .subscribe(() => {
+          this._snackBar.open(`${item.name} removed successfully`, 'CLOSE', {
+            verticalPosition: 'top',
+            duration: 5000,
+          });
+        });
+    },
+    [CardAction.ShoppingCart]: () => {},
+  };
+
   constructor(
     private itemsService: ItemsListService,
     private _bottomSheet: MatBottomSheet,
@@ -52,10 +81,8 @@ export class ItemsEditListComponent {
     this._bottomSheet.open(NewItemComponent);
   }
 
-  openEditMenu(item: Item) {
-    this._bottomSheet.open(NewItemComponent, {
-      data: item,
-    });
+  manageItemClicked(item: Item, action: CardAction) {
+    this.CardActionCallBack[action](item);
   }
 
   deleteClosed() {

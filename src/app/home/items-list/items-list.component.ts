@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Observable, map } from 'rxjs';
 import { CardComponent } from '../../shared/card/card.component';
+import { CardAction } from '../../shared/card/card.model';
 import { ItemsListService } from './items-list.service';
 import { Item } from './items.model';
 
@@ -19,17 +20,26 @@ export class ItemsListComponent {
     map((items) => items.filter((i) => i.open))
   );
 
+  readonly CardActions = [CardAction.ShoppingCart];
+  readonly CardActionCallBack: Record<CardAction, Function> = {
+    [CardAction.Edit]: () => {},
+    [CardAction.Delete]: () => {},
+    [CardAction.ShoppingCart]: (item: Item) => {
+      this.itemsService.closeItem(item.id).subscribe(() =>
+        this._snackBar.open('Item closed successfully', 'CLOSE', {
+          verticalPosition: 'top',
+          duration: 5000,
+        })
+      );
+    },
+  };
+
   constructor(
     private itemsService: ItemsListService,
     private _snackBar: MatSnackBar
   ) {}
 
-  closeItem(itemId: number) {
-    this.itemsService.closeItem(itemId).subscribe(() =>
-      this._snackBar.open('Item closed successfully', 'CLOSE', {
-        verticalPosition: 'top',
-        duration: 5000,
-      })
-    );
+  manageClicked(item: Item, action: CardAction) {
+    this.CardActionCallBack[action](item);
   }
 }

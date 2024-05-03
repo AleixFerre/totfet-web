@@ -1,7 +1,7 @@
 # TODO
 
 - [x] Edit items
-- [ ] Delete items independently
+- [x] Delete items independently
 - [ ] Search box
 - [ ] Reordering items
 

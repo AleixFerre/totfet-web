@@ -2,7 +2,7 @@
   <h4 class="title">Open</h4>
 
   @for (item of openItems | async; track $index) {
-    <app-card [item]="item" icon="edit" (onClick)="openEditMenu(item)"></app-card>
+    <app-card [item]="item" [actions]="CardActions" (onClick)="manageItemClicked(item, $event)"></app-card>
   } @empty {
     <p class="label">No items open</p>
   }
@@ -19,7 +19,7 @@
   </div>
 
   @for (item of closedItems | async; track $index) {
-    <app-card [item]="item" icon="edit" (onClick)="openEditMenu(item)"></app-card>
+    <app-card [item]="item" [actions]="CardActions" (onClick)="manageItemClicked(item, $event)"></app-card>
   } @empty {
     <p class="label">No items closed</p>
   }

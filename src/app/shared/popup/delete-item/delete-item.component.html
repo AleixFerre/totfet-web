@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Delete "{{ data.name }}"?</h2>
+<mat-dialog-content>
+  <p>CAUTION: You cannot undo this action.</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>
+    Delete
+  </button>
+</mat-dialog-actions>
