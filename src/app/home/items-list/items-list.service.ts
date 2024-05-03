@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map, tap } from 'rxjs';
 import { url } from '../../shared/globals';
 import { Item } from './items.model';
 
@@ -9,10 +9,24 @@ import { Item } from './items.model';
 })
 export class ItemsListService {
   private _items: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
-  public items = this._items.asObservable();
+  private _search: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+  public items = combineLatest([
+    this._items.asObservable(),
+    this._search.asObservable(),
+  ]).pipe(
+    map(([items, search]) =>
+      items.filter((i) => i.name.toLowerCase().includes(search.toLowerCase()))
+    )
+  );
+
   public isLoading = true;
 
   constructor(private http: HttpClient) {}
+
+  public setSearchValue(searchValue: string) {
+    this._search.next(searchValue);
+  }
 
   public refreshItems(): void {
     this.http.get<Item[]>(`${url}/items`).subscribe((items) => {

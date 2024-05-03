@@ -1,5 +1,19 @@
 <p class="title">TotFet</p>
 
+@if (openSearchBox) {
+  <mat-form-field class="search-box" appearance="fill">
+    <mat-label>Search</mat-label>
+    <input matInput matInputAutofocus type="text" (input)="onSearchBoxChange($event)">
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="closeSearch()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+} @else {
+  <button class="search-button" matSuffix mat-icon-button aria-label="Clear" (click)="openSearchBox = true">
+    <mat-icon>search</mat-icon>
+  </button>
+}
+
 <mat-tab-group
   dynamicHeight
   [selectedIndex]="defaultSelectedIndex"

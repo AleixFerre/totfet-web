@@ -2,7 +2,7 @@
 
 - [x] Edit items
 - [x] Delete items independently
-- [ ] Search box
+- [x] Search box
 - [ ] Reordering items
 
 ## Future implementations
