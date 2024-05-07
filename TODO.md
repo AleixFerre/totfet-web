@@ -3,8 +3,9 @@
 - [x] Edit items
 - [x] Delete items independently
 - [x] Search box
-- [ ] Reordering items
+- [ ] Make the app more responsive for desktop users
 
 ## Future implementations
 
+- [ ] Reordering items
 - [ ] Recurrent items
