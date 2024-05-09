@@ -1,0 +1,85 @@
+{
+  "configVersion": 1,
+  "timestamp": 1715279353995,
+  "index": "https://aleixferre.github.io/totfet-web/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://aleixferre.github.io/totfet-web/chunk-2A5Y5FSF.js",
+        "https://aleixferre.github.io/totfet-web/chunk-GXBGKFV3.js",
+        "https://aleixferre.github.io/totfet-web/favicon.ico",
+        "https://aleixferre.github.io/totfet-web/index.html",
+        "https://aleixferre.github.io/totfet-web/main-BKXD7AQA.js",
+        "https://aleixferre.github.io/totfet-web/manifest.webmanifest",
+        "https://aleixferre.github.io/totfet-web/polyfills-RT5I6R6G.js",
+        "https://aleixferre.github.io/totfet-web/styles-7EHMVMXJ.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://aleixferre.github.io/totfet-web/assets/fonts/Open Sans/OpenSans-Regular.ttf",
+        "https://aleixferre.github.io/totfet-web/assets/icons/icon-128x128.png",
+        "https://aleixferre.github.io/totfet-web/assets/icons/icon-144x144.png",
+        "https://aleixferre.github.io/totfet-web/assets/icons/icon-152x152.png",
+        "https://aleixferre.github.io/totfet-web/assets/icons/icon-192x192.png",
+        "https://aleixferre.github.io/totfet-web/assets/icons/icon-384x384.png",
+        "https://aleixferre.github.io/totfet-web/assets/icons/icon-512x512.png",
+        "https://aleixferre.github.io/totfet-web/assets/icons/icon-72x72.png",
+        "https://aleixferre.github.io/totfet-web/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://aleixferre.github.io/totfet-web/assets/fonts/Open Sans/OpenSans-Regular.ttf": "76ea5d4c70539ad9b0e7faf7e4fbe3bae8a961c7",
+    "https://aleixferre.github.io/totfet-web/assets/icons/icon-128x128.png": "7a4c23ff626926d0a3b3bf66ac14ead06fe62e46",
+    "https://aleixferre.github.io/totfet-web/assets/icons/icon-144x144.png": "a860562ab6388835782fcb108a3772819801302a",
+    "https://aleixferre.github.io/totfet-web/assets/icons/icon-152x152.png": "b92ddc05d42d6efe7f2b588fd2212996253addfd",
+    "https://aleixferre.github.io/totfet-web/assets/icons/icon-192x192.png": "cc9402b89b188bcd6a0766cee3fe10e443c9294b",
+    "https://aleixferre.github.io/totfet-web/assets/icons/icon-384x384.png": "358fd2c014f0822a6fe49e7234fb94be4aac2e48",
+    "https://aleixferre.github.io/totfet-web/assets/icons/icon-512x512.png": "da2c4d13e0c65df18b5296fa640d8784d61f419d",
+    "https://aleixferre.github.io/totfet-web/assets/icons/icon-72x72.png": "43432d15c3c779fd2437705df9a4b7b45b093ba7",
+    "https://aleixferre.github.io/totfet-web/assets/icons/icon-96x96.png": "aa874d7a130f31443923049f534cfb2d837a8ea8",
+    "https://aleixferre.github.io/totfet-web/chunk-2A5Y5FSF.js": "e4a95abb38c6ed99dfa8829b8ee48fd467ef6fa5",
+    "https://aleixferre.github.io/totfet-web/chunk-GXBGKFV3.js": "19f64b2ae4c96a0571f58fe836188bdf55be8927",
+    "https://aleixferre.github.io/totfet-web/favicon.ico": "aa01d96d57b19114ef8c9d510abcdc0b5949a829",
+    "https://aleixferre.github.io/totfet-web/index.html": "23b54760510db745460b9c22d46a4d92a5d36392",
+    "https://aleixferre.github.io/totfet-web/main-BKXD7AQA.js": "bcb44439bf970a984eb9379de500480ab8f163fb",
+    "https://aleixferre.github.io/totfet-web/manifest.webmanifest": "b81e385a10e42699d9f0541133c216728c74b3dc",
+    "https://aleixferre.github.io/totfet-web/polyfills-RT5I6R6G.js": "fe9f024576f21ff6314cf8f8332cde58b9a12416",
+    "https://aleixferre.github.io/totfet-web/styles-7EHMVMXJ.css": "89495428debab577c97a5639737b5b41a652bf3f"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
