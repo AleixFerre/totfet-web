@@ -1,8 +1,8 @@
 {
-  "name": "totfet-web",
-  "short_name": "totfet-web",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "TotFet",
+  "short_name": "TotFet",
+  "theme_color": "#ffd180",
+  "background_color": "#2c2c2c",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
