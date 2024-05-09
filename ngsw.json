@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1715279353995,
+  "timestamp": 1715283735947,
   "index": "https://aleixferre.github.io/totfet-web/index.html",
   "assetGroups": [
     {
@@ -59,7 +59,7 @@
     "https://aleixferre.github.io/totfet-web/favicon.ico": "aa01d96d57b19114ef8c9d510abcdc0b5949a829",
     "https://aleixferre.github.io/totfet-web/index.html": "23b54760510db745460b9c22d46a4d92a5d36392",
     "https://aleixferre.github.io/totfet-web/main-BKXD7AQA.js": "bcb44439bf970a984eb9379de500480ab8f163fb",
-    "https://aleixferre.github.io/totfet-web/manifest.webmanifest": "b81e385a10e42699d9f0541133c216728c74b3dc",
+    "https://aleixferre.github.io/totfet-web/manifest.webmanifest": "1f8c74e4cae6f09cbd1f815919716fbffd419192",
     "https://aleixferre.github.io/totfet-web/polyfills-RT5I6R6G.js": "fe9f024576f21ff6314cf8f8332cde58b9a12416",
     "https://aleixferre.github.io/totfet-web/styles-7EHMVMXJ.css": "89495428debab577c97a5639737b5b41a652bf3f"
   },
