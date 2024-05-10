@@ -5,6 +5,7 @@
 - [x] Search box
 - [x] PWA
 - [ ] Translate to català (homeee, espavila)
+  - [ ] Change the PWA language
 - [ ] Make the app more responsive for desktop users
 
 ## Future implementations
