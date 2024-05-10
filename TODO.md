@@ -10,5 +10,6 @@
 
 ## Future implementations
 
+- [ ] Add multiple lists
 - [ ] Reordering items
 - [ ] Recurrent items
