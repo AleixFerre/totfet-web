@@ -26,7 +26,7 @@ export class ItemsListComponent {
     [CardAction.Delete]: () => {},
     [CardAction.ShoppingCart]: (item: Item) => {
       this.itemsService.closeItem(item.id).subscribe(() =>
-        this._snackBar.open('Item closed successfully', 'CLOSE', {
+        this._snackBar.open('Compra tancada correctament', 'CLOSE', {
           verticalPosition: 'top',
           duration: 5000,
         })

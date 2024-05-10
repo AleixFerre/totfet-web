@@ -34,5 +34,5 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 };
 
 function parseError(err: HttpErrorResponse): string {
-  return err.error.statusCode + " - " + err.error.message;
+  return `${err.error.statusCode} - ${err.error.message}`;
 }

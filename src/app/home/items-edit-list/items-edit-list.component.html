@@ -1,18 +1,18 @@
 @if (openItems | async; as items) {
-  <h4 class="title">Open</h4>
+  <h4 class="title">Per comprar</h4>
 
   @for (item of openItems | async; track $index) {
     <app-card [item]="item" [actions]="CardActions" (onClick)="manageItemClicked(item, $event)"></app-card>
   } @empty {
-    <p class="label">No items open</p>
+    <p class="label">No hi ha res per comprar</p>
   }
 
   <mat-divider></mat-divider>
 
   <div class="title-container">
-    <h4 class="title">Closed</h4>
+    <h4 class="title">Comprat</h4>
     @if ((closedItems | async)?.length! > 0) {
-      <button mat-icon-button color="warn" matTooltip="Remove all closed" (click)="deleteClosed()">
+      <button mat-icon-button color="warn" matTooltip="Esborrar tots els comprats" (click)="deleteClosed()">
         <mat-icon>delete_forever</mat-icon>
       </button>
     }
@@ -21,7 +21,7 @@
   @for (item of closedItems | async; track $index) {
     <app-card [item]="item" [actions]="CardActions" (onClick)="manageItemClicked(item, $event)"></app-card>
   } @empty {
-    <p class="label">No items closed</p>
+    <p class="label">No hi ha res comprat</p>
   }
   <div class="final"></div>
 }

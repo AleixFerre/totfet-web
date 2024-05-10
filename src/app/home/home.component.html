@@ -2,7 +2,7 @@
 
 @if (openSearchBox) {
   <mat-form-field class="search-box" appearance="fill">
-    <mat-label>Search</mat-label>
+    <mat-label>Buscar</mat-label>
     <input matInput matInputAutofocus type="text" (input)="onSearchBoxChange($event)">
     <button matSuffix mat-icon-button aria-label="Clear" (click)="closeSearch()">
       <mat-icon>close</mat-icon>
@@ -19,13 +19,13 @@
   [selectedIndex]="defaultSelectedIndex"
   (selectedTabChange)="onChangeTab($event)"
 >
-  <mat-tab label="Buy">
+  <mat-tab label="Comprar">
     @if (itemsService.isLoading) {
       <mat-progress-bar class="top" mode="indeterminate"></mat-progress-bar>
     }
     <app-items-list></app-items-list>
   </mat-tab>
-  <mat-tab label="Edit">
+  <mat-tab label="Editar">
     @if (itemsService.isLoading) {
       <mat-progress-bar class="top" mode="indeterminate"></mat-progress-bar>
     }

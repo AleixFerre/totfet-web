@@ -1,7 +1,7 @@
 <div class="centered">
   <h1 class="title">Tot Fet</h1>
   <mat-form-field appearance="fill" class="input">
-    <mat-label>Password</mat-label>
+    <mat-label>Contrasenya</mat-label>
     <input
       matInput
       [formControl]="password"
@@ -10,11 +10,11 @@
       required
     />
     @if (password.hasError('required')) {
-    <mat-error>Password is Required</mat-error>
+    <mat-error>La contrasenya és obligatoria</mat-error>
     }
   </mat-form-field>
 
   <button mat-raised-button color="primary" [disabled]="password.invalid" (click)="sendRequest()">
-    Login
+    Iniciar Sessió
   </button>
 </div>

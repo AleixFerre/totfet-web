@@ -1,45 +1,45 @@
 <div [formGroup]="itemForm">
-  <h3>{{ item ? "Edit" : "Add" }} item</h3>
+  <h3>{{ item ? "Editar" : "Afegir" }} compra</h3>
   <mat-form-field appearance="fill" class="input">
-    <mat-label>Name</mat-label>
+    <mat-label>Nom</mat-label>
     <input
       matInput
       matInputAutofocus
       formControlName="name"
       type="text"
       maxlength="100"
-      placeholder="Name"
+      placeholder="Nom"
       required
     />
     <mat-hint align="end">
       {{ itemForm.get("name")?.value?.length }} / 100
     </mat-hint>
     @if (itemForm.get('name')?.hasError('required')) {
-      <mat-error>Name is Required</mat-error>
+      <mat-error>El <b>nom</b> és obligatori</mat-error>
     }
   </mat-form-field>
   <mat-form-field appearance="fill" class="input">
-    <mat-label>Amount</mat-label>
+    <mat-label>Quantitat</mat-label>
     <input
       matInput
       formControlName="amount"
       type="number"
       min="1"
       max="100"
-      placeholder="Amount"
+      placeholder="Quantitat"
       required
     />
     @if (itemForm.get('amount')?.hasError('required')) {
-      <mat-error>Amount is Required</mat-error>
+      <mat-error>La <b>quantitat</b> és obligatoria</mat-error>
     } @if (itemForm.get('amount')?.hasError('min')) {
-      <mat-error>Amount needs to be atleast 1</mat-error>
+      <mat-error>La <b>quantitat</b> ha de ser com a mínim 1</mat-error>
     } @if (itemForm.get('amount')?.hasError('max')) {
-      <mat-error>Amount needs to be max 100</mat-error>
+      <mat-error>La <b>quantitat</b> ha de ser menor de 100</mat-error>
     }
   </mat-form-field>
 
   @if (item) {
-    <mat-checkbox class="checkbox" formControlName="open"> Is open </mat-checkbox>
+    <mat-checkbox class="checkbox" formControlName="open"> Per comprar </mat-checkbox>
   }
 </div>
 
@@ -50,9 +50,9 @@
     [disabled]="itemForm.invalid"
     (click)="item ? updateItem() : addItem()"
   >
-    {{ item ? "Save" : "Add" }}
+    {{ item ? "Guardar" : "Afegir" }}
   </button>
   @if (!item) {
-    <mat-checkbox [(ngModel)]="addMore"> Add more </mat-checkbox>
+    <mat-checkbox [(ngModel)]="addMore"> Afegir-ne més </mat-checkbox>
   }
 </div>

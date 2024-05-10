@@ -43,7 +43,7 @@ export class LoginComponent {
         this.router.navigate(['home']);
       },
       error: () => {
-        this.snackBarRef = this._snackBar.open('Incorrect password', 'CLOSE', {
+        this.snackBarRef = this._snackBar.open('Contrasenya Incorrecta', 'CLOSE', {
           duration: 5000,
         });
       },

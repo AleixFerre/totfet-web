@@ -2,7 +2,7 @@
   @for (item of items; track $index) {
     <app-card [item]="item" [actions]="CardActions" (onClick)="manageClicked(item, $event)"></app-card>
   } @empty {
-    <p class="label">No items to buy</p>
+    <p class="label">No hi ha res per comprar</p>
   }
   <div class="final"></div>
 }

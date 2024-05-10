@@ -4,8 +4,8 @@
 - [x] Delete items independently
 - [x] Search box
 - [x] PWA
-- [ ] Translate to català (homeee, espavila)
-  - [ ] Change the PWA language
+- [x] Translate to català (homeee, espavila)
+  - [x] Change the PWA language
 - [ ] Make the app more responsive for desktop users
 
 ## Future implementations

@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
+import {
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
@@ -19,12 +25,10 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogClose,
   ],
   templateUrl: './delete-closed.component.html',
-  styleUrl: './delete-closed.component.scss'
+  styleUrl: './delete-closed.component.scss',
 })
 export class DeleteClosedComponent {
-  constructor(
-    public dialogRef: MatDialogRef<DeleteClosedComponent>,
-  ) {}
+  constructor(public dialogRef: MatDialogRef<DeleteClosedComponent>) {}
 
   onNoClick(): void {
     this.dialogRef.close(false);
