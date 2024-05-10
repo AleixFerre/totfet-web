@@ -7,7 +7,7 @@
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
-  "lang": "en-US",
+  "lang": "ca",
   "orientation": "portrait-primary",
   "icons": [
     {
