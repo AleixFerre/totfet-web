@@ -2,7 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CardComponent } from '../../shared/card/card.component';
 import { CardAction } from '../../shared/card/card.model';
 import { ItemsListService } from './items-list.service';
@@ -16,9 +16,7 @@ import { Item } from './items.model';
   styleUrl: './items-list.component.scss',
 })
 export class ItemsListComponent {
-  items: Observable<Item[]> = this.itemsService.items.pipe(
-    map((items) => items.filter((i) => i.open))
-  );
+  items: Observable<Item[]> = this.itemsService.openItems;
 
   readonly CardActions = [CardAction.ShoppingCart];
   readonly CardActionCallBack: Record<CardAction, Function> = {

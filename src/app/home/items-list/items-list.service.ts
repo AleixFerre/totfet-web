@@ -20,12 +20,19 @@ export class ItemsListService {
     )
   );
 
+  public openItems = this.items.pipe(
+    map((items) => items.filter((i) => !i.closed))
+  );
+  public closedItems = this.items.pipe(
+    map((items) => items.filter((i) => i.closed))
+  );
+
   public isLoading = true;
 
   constructor(private http: HttpClient) {}
 
   public getAllItemNames(): string[] {
-    return Array.from(new Set(this._items.value.map(i => i.name)))
+    return Array.from(new Set(this._items.value.map((i) => i.name)));
   }
 
   public setSearchValue(searchValue: string) {
@@ -66,7 +73,7 @@ export class ItemsListService {
     this.isLoading = true;
     return this.http.delete<void>(`${url}/items/closed`).pipe(
       tap(() => {
-        this._items.next(this._items.value.filter((i) => i.open));
+        this._items.next(this._items.value.filter((i) => !i.closed));
         this.isLoading = false;
       })
     );
@@ -91,7 +98,7 @@ export class ItemsListService {
       tap(() => {
         const list = [...this._items.value];
         const index = list.findIndex((item) => item.id === itemId);
-        list[index].open = false;
+        list[index].closed = true;
         this._items.next(list);
         this.isLoading = false;
       })

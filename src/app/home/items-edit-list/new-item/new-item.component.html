@@ -45,7 +45,7 @@
   </mat-form-field>
 
   @if (item) {
-    <mat-checkbox class="checkbox" formControlName="open"> Per comprar </mat-checkbox>
+    <mat-slide-toggle class="checkbox" formControlName="closed"> {{ itemForm.get('closed')?.value ? 'Comprat' : 'Per comprar' }} </mat-slide-toggle>
   }
 </div>
 

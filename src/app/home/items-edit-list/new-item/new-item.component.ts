@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Observable, map, startWith } from 'rxjs';
 import { AutofocusDirective } from '../../../shared/autofocus.directive';
@@ -32,6 +33,7 @@ import { Item } from '../../items-list/items.model';
     MatButtonModule,
     MatSnackBarModule,
     MatCheckboxModule,
+    MatSlideToggleModule,
     MatAutocompleteModule,
     AutofocusDirective,
     AsyncPipe,
@@ -43,7 +45,7 @@ export class NewItemComponent implements OnInit {
   itemForm = new FormGroup({
     name: new FormControl<string>(''),
     amount: new FormControl<number>(1),
-    open: new FormControl<boolean>(false),
+    closed: new FormControl<boolean>(false),
   });
 
   filteredItems!: Observable<string[]>;
@@ -72,7 +74,7 @@ export class NewItemComponent implements OnInit {
     this.itemForm.setValue({
       name: this.item?.name ?? '',
       amount: this.item?.amount ?? 1,
-      open: this.item?.open ?? true,
+      closed: this.item?.closed ?? false,
     });
   }
 

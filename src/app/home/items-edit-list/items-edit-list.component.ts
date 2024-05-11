@@ -10,7 +10,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { filter, map, switchMap } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
 import { CardComponent } from '../../shared/card/card.component';
 import { CardAction } from '../../shared/card/card.model';
 import { DeleteClosedComponent } from '../../shared/popup/delete-closed/delete-closed.component';
@@ -36,12 +36,8 @@ import { NewItemComponent } from './new-item/new-item.component';
   styleUrl: './items-edit-list.component.scss',
 })
 export class ItemsEditListComponent {
-  openItems = this.itemsService.items.pipe(
-    map((items) => items.filter((i) => i.open))
-  );
-  closedItems = this.itemsService.items.pipe(
-    map((items) => items.filter((i) => !i.open))
-  );
+  openItems = this.itemsService.openItems;
+  closedItems = this.itemsService.closedItems;
 
   readonly CardActions = [CardAction.Edit, CardAction.Delete];
   readonly CardActionCallBack: Record<CardAction, Function> = {
