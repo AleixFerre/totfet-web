@@ -1,20 +1,33 @@
-<div class="centered">
+<form [formGroup]="formGroup" class="centered">
   <h1 class="title">Tot Fet</h1>
+  <mat-form-field appearance="fill" class="input">
+    <mat-label>Nom de la llista</mat-label>
+    <input
+      matInput
+      formControlName="list"
+      type="text"
+      placeholder="Nom de la llista"
+      required
+    />
+    @if (formGroup.get('list')!.hasError('required')) {
+    <mat-error>El nom de la llista és obligatori</mat-error>
+    }
+  </mat-form-field>
   <mat-form-field appearance="fill" class="input">
     <mat-label>Contrasenya</mat-label>
     <input
       matInput
-      [formControl]="password"
+      formControlName="password"
       type="password"
       placeholder="Password"
       required
     />
-    @if (password.hasError('required')) {
+    @if (formGroup.get('password')!.hasError('required')) {
     <mat-error>La contrasenya és obligatoria</mat-error>
     }
   </mat-form-field>
 
-  <button mat-raised-button color="primary" [disabled]="password.invalid" (click)="sendRequest()">
+  <button mat-raised-button color="primary" [disabled]="formGroup.invalid" (click)="sendRequest()">
     Iniciar Sessió
   </button>
-</div>
+</form>

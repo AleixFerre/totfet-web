@@ -3,4 +3,5 @@ export interface Item {
   name: string;
   amount: number;
   closed: boolean;
+  list_id: number;
 }

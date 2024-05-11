@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -28,7 +33,10 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent {
   private snackBarRef!: MatSnackBarRef<TextOnlySnackBar>;
-  password = new FormControl('', [Validators.required]);
+  formGroup = new FormGroup({
+    list: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
 
   constructor(
     private loginService: LoginService,
@@ -38,14 +46,19 @@ export class LoginComponent {
 
   sendRequest() {
     this.snackBarRef?.dismiss();
-    this.loginService.login(this.password.value!).subscribe({
+    const loginInfo = this.formGroup.value;
+    this.loginService.login(loginInfo.list!, loginInfo.password!).subscribe({
       complete: () => {
         this.router.navigate(['home']);
       },
       error: () => {
-        this.snackBarRef = this._snackBar.open('Contrasenya Incorrecta', 'CLOSE', {
-          duration: 5000,
-        });
+        this.snackBarRef = this._snackBar.open(
+          'Contrasenya Incorrecta',
+          'CLOSE',
+          {
+            duration: 5000,
+          }
+        );
       },
     });
   }

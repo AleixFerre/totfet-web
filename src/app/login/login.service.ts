@@ -7,8 +7,8 @@ import { url } from '../shared/globals';
 export class LoginService {
   constructor(private http: HttpClient) {}
 
-  login(password: string): Observable<void> {
-    localStorage.setItem('Authorization', password);
+  login(name: string, password: string): Observable<void> {
+    localStorage.setItem('Authorization', `${name}:${password}`);
     return this.http.get<void>(url);
   }
 }
