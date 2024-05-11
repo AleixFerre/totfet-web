@@ -9,8 +9,14 @@
       type="text"
       maxlength="100"
       placeholder="Nom"
+      [matAutocomplete]="auto"
       required
     />
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      @for (item of filteredItems | async; track item) {
+        <mat-option [value]="item">{{ item }}</mat-option>
+      }
+    </mat-autocomplete>
     <mat-hint align="end">
       {{ itemForm.get("name")?.value?.length }} / 100
     </mat-hint>

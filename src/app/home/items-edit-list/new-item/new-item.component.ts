@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -5,6 +6,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {
   MAT_BOTTOM_SHEET_DATA,
   MatBottomSheetRef,
@@ -14,6 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Observable, map, startWith } from 'rxjs';
 import { AutofocusDirective } from '../../../shared/autofocus.directive';
 import { ItemsListService } from '../../items-list/items-list.service';
 import { Item } from '../../items-list/items.model';
@@ -28,9 +31,10 @@ import { Item } from '../../items-list/items.model';
     FormsModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatSnackBarModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
     AutofocusDirective,
+    AsyncPipe,
   ],
   templateUrl: './new-item.component.html',
   styleUrl: './new-item.component.scss',
@@ -42,6 +46,9 @@ export class NewItemComponent implements OnInit {
     open: new FormControl<boolean>(false),
   });
 
+  filteredItems!: Observable<string[]>;
+  private allItemNames = this.itemService.getAllItemNames();
+
   addMore = false;
 
   constructor(
@@ -52,6 +59,16 @@ export class NewItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.filteredItems = this.itemForm.get('name')!.valueChanges.pipe(
+      startWith(''),
+      map((value) => {
+        if (!value) return [];
+        return this.allItemNames.filter((option: string) =>
+          option.toLowerCase().includes(value.toLowerCase())
+        );
+      })
+    );
+
     this.itemForm.setValue({
       name: this.item?.name ?? '',
       amount: this.item?.amount ?? 1,

@@ -24,6 +24,10 @@ export class ItemsListService {
 
   constructor(private http: HttpClient) {}
 
+  public getAllItemNames(): string[] {
+    return Array.from(new Set(this._items.value.map(i => i.name)))
+  }
+
   public setSearchValue(searchValue: string) {
     this._search.next(searchValue);
   }

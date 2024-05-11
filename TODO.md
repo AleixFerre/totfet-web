@@ -6,10 +6,10 @@
 - [x] PWA
 - [x] Translate to català (homeee, espavila)
   - [x] Change the PWA language
-- [ ] Make the app more responsive for desktop users
+- [x] Autocomplete name with existing items
+- [ ] Add multiple lists
 
 ## Future implementations
 
-- [ ] Add multiple lists
 - [ ] Reordering items
 - [ ] Recurrent items
