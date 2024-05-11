@@ -13,3 +13,4 @@
 
 - [ ] Reordering items
 - [ ] Recurrent items
+- [ ] Add image link field
