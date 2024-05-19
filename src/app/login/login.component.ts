@@ -54,7 +54,7 @@ export class LoginComponent {
       error: () => {
         this.snackBarRef = this._snackBar.open(
           'Contrasenya Incorrecta',
-          'CLOSE',
+          'TANCAR',
           {
             duration: 5000,
           }

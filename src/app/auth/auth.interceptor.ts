@@ -18,7 +18,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(request).pipe(
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
-        _snackBar.open(`Error: ${parseError(err)}`, 'CLOSE', {
+        _snackBar.open(`Error: ${parseError(err)}`, 'TANCAR', {
           duration: 5000
         })
         if (err.status === 401) {

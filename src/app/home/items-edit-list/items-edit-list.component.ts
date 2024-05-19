@@ -57,7 +57,7 @@ export class ItemsEditListComponent {
           switchMap(() => this.itemsService.removeItem(item))
         )
         .subscribe(() => {
-          this._snackBar.open(`${item.name} esborrat correctament`, 'CLOSE', {
+          this._snackBar.open(`${item.name} esborrat correctament`, 'TANCAR', {
             verticalPosition: 'top',
             duration: 5000,
           });
@@ -90,7 +90,7 @@ export class ItemsEditListComponent {
         switchMap(() => this.itemsService.removeClosed())
       )
       .subscribe(() => {
-        this._snackBar.open('Compres tancades esborrades correctament', 'CLOSE', {
+        this._snackBar.open('Compres tancades esborrades correctament', 'TANCAR', {
           verticalPosition: 'top',
           duration: 5000,
         });

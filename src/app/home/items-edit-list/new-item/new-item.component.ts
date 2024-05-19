@@ -82,7 +82,7 @@ export class NewItemComponent implements OnInit {
     this.itemService
       .editItem({ id: this.item.id, ...this.itemForm.value } as Partial<Item>)
       .subscribe(() => {
-        this._snackBar.open('Compra actualitzada correctament', 'CLOSE', {
+        this._snackBar.open('Compra actualitzada correctament', 'TANCAR', {
           verticalPosition: 'top',
           duration: 5000,
         });
@@ -95,7 +95,7 @@ export class NewItemComponent implements OnInit {
     this.itemService
       .addItem(this.itemForm.value as Partial<Item>)
       .subscribe(() => {
-        this._snackBar.open('Compra afegida correctament', 'CLOSE', {
+        this._snackBar.open('Compra afegida correctament', 'TANCAR', {
           verticalPosition: 'top',
           duration: 5000,
         });
