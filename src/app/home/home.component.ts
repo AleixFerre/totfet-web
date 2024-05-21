@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { AutofocusDirective } from '../shared/autofocus.directive';
+import { TIME_TO_REFRESH } from '../shared/globals';
 import { ItemsEditListComponent } from './items-edit-list/items-edit-list.component';
 import { NewItemComponent } from './items-edit-list/new-item/new-item.component';
 import { ItemsListComponent } from './items-list/items-list.component';
@@ -33,8 +34,8 @@ import { ItemsListService } from './items-list/items-list.service';
 })
 export class HomeComponent {
   defaultSelectedIndex = localStorage.getItem('selected-tab');
-
   openSearchBox = false;
+  needsRefresh = false;
 
   constructor(
     public itemsService: ItemsListService,
@@ -42,6 +43,15 @@ export class HomeComponent {
   ) {}
 
   ngOnInit(): void {
+    this.itemsService.refreshItems();
+
+    setInterval(() => {
+      this.needsRefresh = true;
+    }, TIME_TO_REFRESH);
+  }
+
+  refreshItems() {
+    this.needsRefresh = false;
     this.itemsService.refreshItems();
   }
 

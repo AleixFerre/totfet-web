@@ -36,3 +36,9 @@
 <button mat-fab color="primary" class="add-button" (click)="openAddMenu()">
   <mat-icon>add</mat-icon>
 </button>
+
+@if (needsRefresh) {
+  <button mat-raised-button color="primary" class="refresh-button" (click)="refreshItems()">
+    <mat-icon>refresh</mat-icon> Recarrega
+  </button>
+}

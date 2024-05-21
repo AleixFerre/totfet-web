@@ -40,6 +40,7 @@ export class ItemsListService {
   }
 
   public refreshItems(): void {
+    this.isLoading = true;
     this.http.get<Item[]>(`${url}/items`).subscribe((items) => {
       this.isLoading = false;
       return this._items.next(items);
