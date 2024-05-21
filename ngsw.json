@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1716323665399,
+  "timestamp": 1716331778386,
   "index": "https://aleixferre.github.io/totfet-web/index.html",
   "assetGroups": [
     {
@@ -15,7 +15,7 @@
         "https://aleixferre.github.io/totfet-web/chunk-V2HD7OKB.js",
         "https://aleixferre.github.io/totfet-web/favicon.ico",
         "https://aleixferre.github.io/totfet-web/index.html",
-        "https://aleixferre.github.io/totfet-web/main-RWLJOQOM.js",
+        "https://aleixferre.github.io/totfet-web/main-GD2534WH.js",
         "https://aleixferre.github.io/totfet-web/manifest.webmanifest",
         "https://aleixferre.github.io/totfet-web/polyfills-RT5I6R6G.js",
         "https://aleixferre.github.io/totfet-web/styles-7EHMVMXJ.css"
@@ -57,8 +57,8 @@
     "https://aleixferre.github.io/totfet-web/chunk-FQHYJTJM.js": "f45dfb283800992498560f23252deda00d322005",
     "https://aleixferre.github.io/totfet-web/chunk-V2HD7OKB.js": "2d221b90d2757fbd188661257df601072e81b158",
     "https://aleixferre.github.io/totfet-web/favicon.ico": "aa01d96d57b19114ef8c9d510abcdc0b5949a829",
-    "https://aleixferre.github.io/totfet-web/index.html": "50c61a98eca375ffa0914696847be7d199edaf5b",
-    "https://aleixferre.github.io/totfet-web/main-RWLJOQOM.js": "a2097bbed26d0826170e09c1588e1bee3f2b06f4",
+    "https://aleixferre.github.io/totfet-web/index.html": "ebbe1fe79e5e1c1f71934d203032369398438aff",
+    "https://aleixferre.github.io/totfet-web/main-GD2534WH.js": "44b3555f2293074012f206ce301ca9e020dfa026",
     "https://aleixferre.github.io/totfet-web/manifest.webmanifest": "0d196826a001cad5f0654f70cd92cd2f5f729e4d",
     "https://aleixferre.github.io/totfet-web/polyfills-RT5I6R6G.js": "fe9f024576f21ff6314cf8f8332cde58b9a12416",
     "https://aleixferre.github.io/totfet-web/styles-7EHMVMXJ.css": "89495428debab577c97a5639737b5b41a652bf3f"
