@@ -80,6 +80,11 @@ export class NewItemComponent implements OnInit {
     });
   }
 
+  submitForm() {
+    if (this.itemForm.invalid) return;
+    this.item ? this.updateItem() : this.addItem();
+  }
+
   updateItem() {
     this.itemService
       .editItem({ id: this.item.id, ...this.itemForm.value } as Partial<Item>)
@@ -89,6 +94,7 @@ export class NewItemComponent implements OnInit {
           duration: 5000,
         });
       });
+    this._bottomSheetRef.dismiss();
   }
 
   addItem() {

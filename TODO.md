@@ -13,7 +13,7 @@
 - [ ] Add admin panel that only ME can have access to
 - [ ] Multitenant option
   - Quick way to change between known lists
-- [ ] When you click enter on edit/create, it saves it and close
+- [x] When you click enter on edit/create, it saves it and close
 - [x] When you add a new task with the toggle "Add more", reset the form on save
 
 ## Future implementations
