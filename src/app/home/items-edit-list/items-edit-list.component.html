@@ -18,8 +18,8 @@
     }
   </div>
 
-  @for (item of closedItems | async; track $index) {
-    <app-card [item]="item" [actions]="CardActions" (onClick)="manageItemClicked(item, $event)"></app-card>
+  @for (item of closedItems | async; track item.id; let first = $first) {
+    <app-card [item]="item" [actions]="CardActions" [isFirst]="first" (onClick)="manageItemClicked(item, $event)"></app-card>
   } @empty {
     <p class="label">No hi ha res comprat</p>
   }
