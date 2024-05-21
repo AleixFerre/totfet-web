@@ -3,7 +3,7 @@
 @if (openSearchBox) {
   <mat-form-field class="search-box" appearance="fill">
     <mat-label>Buscar</mat-label>
-    <input matInput matInputAutofocus type="text" (input)="onSearchBoxChange($event)">
+    <input matInput matInputAutofocus autofocus type="text" (input)="onSearchBoxChange($event)">
     <button matSuffix mat-icon-button aria-label="Clear" (click)="closeSearch()">
       <mat-icon>close</mat-icon>
     </button>
