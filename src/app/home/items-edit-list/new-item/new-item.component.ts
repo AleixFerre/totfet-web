@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -48,6 +48,8 @@ export class NewItemComponent implements OnInit {
     closed: new FormControl<boolean>(false),
   });
 
+  @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
+
   filteredItems!: Observable<string[]>;
   private allItemNames = this.itemService.getAllItemNames();
 
@@ -87,8 +89,6 @@ export class NewItemComponent implements OnInit {
           duration: 5000,
         });
       });
-
-    if (!this.addMore) this._bottomSheetRef.dismiss();
   }
 
   addItem() {
@@ -101,6 +101,12 @@ export class NewItemComponent implements OnInit {
         });
       });
 
-    if (!this.addMore) this._bottomSheetRef.dismiss();
+    if (!this.addMore) {
+      this._bottomSheetRef.dismiss();
+    } else {
+      this.nameInput.nativeElement.focus();
+      this.itemForm.reset();
+      this.itemForm.setValue({ name: '', amount: 1, closed: false });
+    }
   }
 }
