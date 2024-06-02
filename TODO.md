@@ -13,8 +13,11 @@
 - [x] Each time you come from minimizing the app and it elasped some time, the app will refresh the items automatically.
   - Now the app notifies you after 1h. If you click on refresh, after another hour it will prompt the button again.
 - [ ] (Optimization) When you add an item with the same name as an existing closed one, instead of creating a new one, it marks it as non-bought.
+  - It edits it's quantity to the new one
+- [ ] (Optimization) When you add an item with the same name as an existing open one, it adds/replaces its quantity.
+- [ ] Add admin panel that only ME can have access to
 - [ ] Multitenant option
-  - Quick way to change between known lists
+  - Quick way to change between known lists (log out)
 
 ## Future implementations
 
