@@ -1,5 +1,5 @@
 @if (openItems | async; as items) {
-  <h4 class="title">Per comprar</h4>
+  <h4 class="title">Per comprar ({{ (openItems | async)?.length }})</h4>
 
   @for (item of openItems | async; track $index) {
     <app-card [item]="item" [actions]="CardActions" (onClick)="manageItemClicked(item, $event)"></app-card>
@@ -10,7 +10,7 @@
   <mat-divider></mat-divider>
 
   <div class="title-container">
-    <h4 class="title">Comprat</h4>
+    <h4 class="title">Comprat ({{ (closedItems | async)?.length }})</h4>
     @if ((closedItems | async)?.length! > 0) {
       <button mat-icon-button color="warn" matTooltip="Esborrar tots els comprats" (click)="deleteClosed()">
         <mat-icon>delete_forever</mat-icon>
