@@ -49,12 +49,27 @@ export class ItemsListService {
 
   public addItem(item: Partial<Item>): Observable<Item> {
     this.isLoading = true;
-    return this.http.post<Item>(`${url}/items`, item).pipe(
-      tap((newItem) => {
-        this._items.next([...this._items.value, newItem]);
-        this.isLoading = false;
-      })
-    );
+
+    const itemFound = this._items.value.find((i) => i.name === item.name);
+
+    if (!itemFound) {
+      return this.http.post<Item>(`${url}/items`, item).pipe(
+        tap((newItem) => {
+          this._items.next([...this._items.value, newItem]);
+          this.isLoading = false;
+        })
+      );
+    }
+
+    if (itemFound.closed) {
+      return this.editItem({ ...item, id: itemFound.id });
+    }
+
+    return this.editItem({
+      ...item,
+      amount: (item.amount ?? 0) + itemFound.amount,
+      id: itemFound.id,
+    });
   }
 
   public editItem(item: Partial<Item>): Observable<Item> {
