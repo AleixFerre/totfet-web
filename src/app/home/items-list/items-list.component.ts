@@ -23,12 +23,18 @@ export class ItemsListComponent {
     [CardAction.Edit]: () => {},
     [CardAction.Delete]: () => {},
     [CardAction.ShoppingCart]: (item: Item) => {
-      this.itemsService.closeItem(item.id).subscribe(() =>
-        this._snackBar.open('Compra tancada correctament', 'TANCAR', {
-          verticalPosition: 'top',
-          duration: 5000,
-        })
-      );
+      this.itemsService.closeItem(item.id).subscribe({
+        next: () =>
+          this._snackBar.open('Compra tancada correctament', 'TANCAR', {
+            verticalPosition: 'top',
+            duration: 5000,
+          }),
+        error: () =>
+          this._snackBar.open('Error al tancar la compra', 'TANCAR', {
+            verticalPosition: 'top',
+            duration: 5000,
+          }),
+      });
     },
   };
 

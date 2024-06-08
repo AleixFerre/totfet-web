@@ -15,9 +15,9 @@
 - [x] (Optimization) When you add an item with the same name as an existing closed one, instead of creating a new one, it marks it as non-bought.
   - It edits it's quantity to the new one
 - [x] (Optimization) When you add an item with the same name as an existing open one, it adds/replaces its quantity.
+- [x] Refactor for optimistic feedback
 - [ ] Multitenant option
   - Quick way to change between known lists (log out)
-- [ ] Refactor for optimistic feedback
 
 ## Future implementations
 

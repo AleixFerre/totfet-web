@@ -1,6 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, combineLatest, map, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  combineLatest,
+  map,
+  tap,
+  throwError
+} from 'rxjs';
 import { url } from '../../shared/globals';
 import { Item } from './items.model';
 
@@ -85,7 +93,7 @@ export class ItemsListService {
     );
   }
 
-  public removeClosed() {
+  public removeClosed(): Observable<void> {
     this.isLoading = true;
     return this.http.delete<void>(`${url}/items/closed`).pipe(
       tap(() => {
@@ -95,7 +103,7 @@ export class ItemsListService {
     );
   }
 
-  public removeItem(item: Item) {
+  public removeItem(item: Item): Observable<void> {
     this.isLoading = true;
     return this.http.delete<void>(`${url}/items/${item.id}`).pipe(
       tap(() => {
@@ -108,15 +116,18 @@ export class ItemsListService {
     );
   }
 
-  public closeItem(itemId: number) {
-    this.isLoading = true;
+  public closeItem(itemId: number): Observable<void> {
+    const list = [...this._items.value];
+    const index = list.findIndex((item) => item.id === itemId);
+    list[index].closed = true;
+    this._items.next(list);
+
     return this.http.post<void>(`${url}/items/close`, { id: itemId }).pipe(
-      tap(() => {
-        const list = [...this._items.value];
-        const index = list.findIndex((item) => item.id === itemId);
-        list[index].closed = true;
+      catchError((err) => {
+        // revert the changes and rethrow the error
+        list[index].closed = false;
         this._items.next(list);
-        this.isLoading = false;
+        return throwError(() => err);
       })
     );
   }
