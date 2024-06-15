@@ -42,14 +42,14 @@ export class HomeComponent {
   }
 
   private defaultListSetup() {
-    const list = listFromArray(
+    const newList = listFromArray(
       localStorage.getItem(LOCAL_STORAGE_KEYS.AUTHORIZATION)!.split(':')
     );
 
-    if (!this.lists.find((list) => list.name === list.name)) {
+    if (!this.lists.find((list) => list.name === newList.name)) {
       this.lists.push({
-        name: list.name,
-        password: list.password,
+        name: newList.name,
+        password: newList.password,
       });
       localStorage.setItem(
         LOCAL_STORAGE_KEYS.LISTS,
