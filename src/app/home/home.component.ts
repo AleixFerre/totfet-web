@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
-import { AutofocusDirective } from '../shared/autofocus.directive';
 import { BottomBarMenuComponent } from './bottom-bar-menu/bottom-bar-menu.component';
 import { ItemsEditListComponent } from './items-edit-list/items-edit-list.component';
 import { ItemsListComponent } from './items-list/items-list.component';
@@ -16,9 +14,7 @@ import { ItemsListService } from './items-list/items-list.service';
     ItemsEditListComponent,
     BottomBarMenuComponent,
     MatTabsModule,
-    MatIconModule,
     MatProgressBarModule,
-    AutofocusDirective,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
