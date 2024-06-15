@@ -1,17 +1,10 @@
 import { Component } from '@angular/core';
-import {
-  MatBottomSheet,
-  MatBottomSheetModule,
-} from '@angular/material/bottom-sheet';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { AutofocusDirective } from '../shared/autofocus.directive';
-import { TIME_TO_REFRESH } from '../shared/globals';
+import { BottomBarMenuComponent } from './bottom-bar-menu/bottom-bar-menu.component';
 import { ItemsEditListComponent } from './items-edit-list/items-edit-list.component';
-import { NewItemComponent } from './items-edit-list/new-item/new-item.component';
 import { ItemsListComponent } from './items-list/items-list.component';
 import { ItemsListService } from './items-list/items-list.service';
 
@@ -21,12 +14,10 @@ import { ItemsListService } from './items-list/items-list.service';
   imports: [
     ItemsListComponent,
     ItemsEditListComponent,
+    BottomBarMenuComponent,
     MatTabsModule,
     MatIconModule,
-    MatButtonModule,
-    MatBottomSheetModule,
     MatProgressBarModule,
-    MatInputModule,
     AutofocusDirective,
   ],
   templateUrl: './home.component.html',
@@ -35,40 +26,14 @@ import { ItemsListService } from './items-list/items-list.service';
 export class HomeComponent {
   defaultSelectedIndex = localStorage.getItem('selected-tab');
   openSearchBox = false;
-  needsRefresh = false;
 
-  constructor(
-    public itemsService: ItemsListService,
-    private _bottomSheet: MatBottomSheet
-  ) {}
+  constructor(public itemsService: ItemsListService) {}
 
   ngOnInit(): void {
-    this.itemsService.refreshItems();
-
-    setInterval(() => {
-      this.needsRefresh = true;
-    }, TIME_TO_REFRESH);
-  }
-
-  refreshItems() {
-    this.needsRefresh = false;
     this.itemsService.refreshItems();
   }
 
   onChangeTab(event: MatTabChangeEvent) {
     localStorage.setItem('selected-tab', event.index.toString());
-  }
-
-  openAddMenu() {
-    this._bottomSheet.open(NewItemComponent);
-  }
-
-  closeSearch() {
-    this.openSearchBox = false;
-    this.itemsService.setSearchValue('');
-  }
-
-  onSearchBoxChange(searchValue: any) {
-    this.itemsService.setSearchValue(searchValue.target.value);
   }
 }
