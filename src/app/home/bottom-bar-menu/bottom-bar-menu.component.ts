@@ -7,8 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NewItemComponent } from '../items-edit-list/new-item/new-item.component';
-import { ItemsListService } from '../items-list/items-list.service';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { ReloadButtonComponent } from './reload-button/reload-button.component';
 
 @Component({
   selector: 'app-bottom-bar-menu',
@@ -19,21 +19,15 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
     MatIconModule,
     MatButtonModule,
     SearchBarComponent,
+    ReloadButtonComponent,
   ],
   templateUrl: './bottom-bar-menu.component.html',
   styleUrl: './bottom-bar-menu.component.scss',
 })
 export class BottomBarMenuComponent {
-  constructor(
-    public itemsService: ItemsListService,
-    private _bottomSheet: MatBottomSheet
-  ) {}
+  constructor(private _bottomSheet: MatBottomSheet) {}
 
   openAddMenu() {
     this._bottomSheet.open(NewItemComponent);
-  }
-
-  refreshItems() {
-    this.itemsService.refreshItems();
   }
 }
