@@ -6,6 +6,7 @@
     matInputAutofocus
     autofocus
     type="text"
+    (blur)="closeSearch()"
     (input)="onSearchBoxChange($event)"
   />
   <button matSuffix mat-icon-button aria-label="Clear" (click)="closeSearch()">
