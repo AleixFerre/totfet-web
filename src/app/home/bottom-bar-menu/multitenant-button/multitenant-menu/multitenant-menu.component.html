@@ -1,9 +1,9 @@
 <h3>Llistes</h3>
 
-<mat-radio-group [(ngModel)]="selectedList" class="radio-group">
+<mat-radio-group (change)="selectList($event.value)" class="radio-group">
   @for (list of lists; track $index) {
-  <mat-radio-button [value]="list" [checked]="selectedList === list">
-    {{ list.name }}
+  <mat-radio-button [value]="list" [checked]="list.name === selectedList.name">
+    {{ list.name | titlecase }}
   </mat-radio-button>
   }
 </mat-radio-group>

@@ -9,4 +9,5 @@ export const TIME_TO_REFRESH = 1000 * 60 * 60; // 1 hour
 export const LOCAL_STORAGE_KEYS = {
   SELECTED_TAB: 'selected-tab',
   AUTHORIZATION: 'Authorization',
+  LISTS: 'lists',
 };
