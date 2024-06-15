@@ -1,0 +1,23 @@
+@if (openSearchBox) {
+<mat-form-field class="search-box" appearance="outline">
+  <mat-label>Buscar</mat-label>
+  <input
+    matInput
+    matInputAutofocus
+    autofocus
+    type="text"
+    (input)="onSearchBoxChange($event)"
+  />
+  <button matSuffix mat-icon-button aria-label="Clear" (click)="closeSearch()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<button mat-icon-button aria-label="Close" (click)="openSearchBox = false">
+  <mat-icon>close</mat-icon>
+</button>
+} @else {
+<button mat-icon-button aria-label="Search" (click)="openSearchBox = true">
+  <mat-icon>search</mat-icon>
+</button>
+}

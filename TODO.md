@@ -17,6 +17,9 @@
 - [x] (Optimization) When you add an item with the same name as an existing open one, it adds/replaces its quantity.
 - [x] Refactor for optimistic feedback
 - [x] Pull to refresh on iOS
+  - This was bugged. Removed and replaced with a button
+- [x] Bottom menu
+  - [x] Search bar is now showing the items in the bottom instead!! UX problem
 - [ ] Multitenant option
   - Quick way to change between known lists (log out)
 
