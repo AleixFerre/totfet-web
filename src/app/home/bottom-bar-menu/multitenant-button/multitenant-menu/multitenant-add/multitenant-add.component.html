@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Vols afegir una llista?</h2>
+<mat-dialog-content>
+  <b>Surt de la sessió actual i entra a la nova.</b> Aquest cop et sortirà
+  automàticament a la llista i podràs canviar entre llistes de forma ràpida.
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn">Cancel·lar</button>
+  <button
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    color="primary"
+    (click)="closeSession()"
+  >
+    Sortir de la sessió
+  </button>
+</mat-dialog-actions>
