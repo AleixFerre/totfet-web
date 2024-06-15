@@ -3,9 +3,10 @@ import { inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { LOCAL_STORAGE_KEYS } from '../shared/globals';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const sessionToken = localStorage.getItem('Authorization');
+  const sessionToken = localStorage.getItem(LOCAL_STORAGE_KEYS.AUTHORIZATION);
   const router = inject(Router);
   const _snackBar = inject(MatSnackBar);
 
@@ -19,8 +20,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
         _snackBar.open(`Error: ${parseError(err)}`, 'TANCAR', {
-          duration: 5000
-        })
+          duration: 5000,
+        });
         if (err.status === 401) {
           console.error('Unauthorized request:', err);
           router.navigate(['login']);

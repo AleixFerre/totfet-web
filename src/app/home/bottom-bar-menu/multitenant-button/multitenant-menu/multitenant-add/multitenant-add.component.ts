@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -17,14 +17,12 @@ import { Router } from '@angular/router';
   styleUrl: './multitenant-add.component.scss',
 })
 export class MultitenantAddComponent {
-  readonly router = inject(Router);
-
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { bottomBarRef: MatBottomSheetRef }
+    @Inject(MAT_DIALOG_DATA) public data: { bottomBarRef: MatBottomSheetRef },
+    private router: Router
   ) {}
 
   closeSession() {
-    console.log(this.data);
     this.data.bottomBarRef.dismiss();
     this.router.navigate(['/login']);
   }
