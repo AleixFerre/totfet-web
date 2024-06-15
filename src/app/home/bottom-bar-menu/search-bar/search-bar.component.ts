@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { AutofocusDirective } from '../../shared/autofocus.directive';
-import { ItemsListService } from '../items-list/items-list.service';
+import { AutofocusDirective } from '../../../shared/autofocus.directive';
+import { ItemsListService } from '../../items-list/items-list.service';
 
 @Component({
   selector: 'app-search-bar',

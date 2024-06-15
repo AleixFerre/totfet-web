@@ -7,8 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NewItemComponent } from '../items-edit-list/new-item/new-item.component';
-import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ReloadButtonComponent } from './reload-button/reload-button.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @Component({
   selector: 'app-bottom-bar-menu',
