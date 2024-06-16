@@ -20,7 +20,7 @@
   - This was bugged. Removed and replaced with a button
 - [x] Bottom menu
   - [x] Search bar is now showing the items in the bottom instead!! UX problem
-- [ ] Multitenant option
+- [x] Multitenant option
   - Quick way to change between known lists (log out)
 
 ## Future implementations
