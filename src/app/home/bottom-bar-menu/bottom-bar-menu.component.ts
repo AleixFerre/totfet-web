@@ -10,6 +10,7 @@ import { NewItemComponent } from '../items-edit-list/new-item/new-item.component
 import { MultitenantButtonComponent } from './multitenant-button/multitenant-button.component';
 import { ReloadButtonComponent } from './reload-button/reload-button.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { SortByButtonComponent } from './sort-by-button/sort-by-button.component';
 
 @Component({
   selector: 'app-bottom-bar-menu',
@@ -22,6 +23,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     SearchBarComponent,
     ReloadButtonComponent,
     MultitenantButtonComponent,
+    SortByButtonComponent,
   ],
   templateUrl: './bottom-bar-menu.component.html',
   styleUrl: './bottom-bar-menu.component.scss',

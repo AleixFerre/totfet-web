@@ -22,6 +22,7 @@
   - [x] Search bar is now showing the items in the bottom instead!! UX problem
 - [x] Multitenant option
   - Quick way to change between known lists (log out)
+- [ ] Sort by option
 
 ## Future implementations
 

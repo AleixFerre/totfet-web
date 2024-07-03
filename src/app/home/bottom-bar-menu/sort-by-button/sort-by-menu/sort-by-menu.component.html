@@ -1,0 +1,25 @@
+<h3>Ordre</h3>
+<mat-radio-group (change)="selectSortType($event.value.value)" class="radio-group">
+  @for (sortType of sortTypes | keyvalue; track $index) {
+  <mat-radio-button
+    [checked]="sortType.value === selectedSortType"
+    [value]="sortType"
+  >
+    {{ sortType.value | titlecase }}
+  </mat-radio-button>
+  }
+</mat-radio-group>
+
+@if (selectedSortType !== SortType.NO_SORT) {
+<h3>Direcció</h3>
+<mat-radio-group (change)="selectSortOrder($event.value.value)" class="radio-group">
+  @for (sortOrder of sortOrders | keyvalue; track $index) {
+  <mat-radio-button
+    [checked]="sortOrder.value === selectedSortOrder"
+    [value]="sortOrder"
+  >
+    {{ sortOrder.value | titlecase }}
+  </mat-radio-button>
+  }
+</mat-radio-group>
+}
