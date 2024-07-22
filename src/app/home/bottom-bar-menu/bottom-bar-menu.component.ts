@@ -32,4 +32,8 @@ export class BottomBarMenuComponent {
   openAddMenu() {
     this._bottomSheet.open(NewItemComponent);
   }
+
+  goToHelp() {
+    location.href="./help";
+  }
 }

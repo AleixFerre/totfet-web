@@ -22,6 +22,10 @@
   - [x] Search bar is now showing the items in the bottom instead!! UX problem
 - [x] Multitenant option
   - Quick way to change between known lists (log out)
+- [x] Help page
+- [ ] BUG: When filtering by search field, the app goes inconsistent when marking as bought.
+- [ ] BUG: You can enter decimals on the quantity and it breaks on the server.
+- [ ] Add custom tags to each item.
 
 ## Future implementations
 

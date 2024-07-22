@@ -1,0 +1,24 @@
+.header {
+  padding-left: 1rem;
+  display: flex;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  background-color: #2c2c2c;
+  align-items: center;
+  box-shadow: -1px 1px 10px 0px #00000052;
+}
+
+.container {
+  max-width: 1200px;
+  width: 90vw;
+  margin: auto;
+  padding-bottom: 10rem;
+
+  .video {
+    width: 80vw;
+    aspect-ratio: 16/9;
+    max-width: 600px;
+  }
+}
+

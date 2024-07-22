@@ -1,0 +1,15 @@
+<div class="header">
+    <a href="../" class="back-button">
+        <mat-icon color="primary">arrow_back</mat-icon>
+      </a>
+         
+    <h3>Ajuda</h3>
+</div>
+
+<div class="container">
+    @for (os of operatingSystems; track $index) {
+        <h2>{{ os }}</h2>
+        <p>{{ VIDEOS[os].description }}</p>
+        <iframe class="video" [src]="VIDEOS[os].videoEmbedUrl | sanitize" title="{{os}} - TotFet" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    }
+</div>

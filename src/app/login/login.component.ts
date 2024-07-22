@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import {
   MatSnackBar,
@@ -14,6 +15,7 @@ import {
   MatSnackBarRef,
   TextOnlySnackBar,
 } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 
@@ -26,6 +28,8 @@ import { LoginService } from './login.service';
     ReactiveFormsModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatTooltipModule,
+    MatIconModule
   ],
   providers: [LoginService],
   templateUrl: './login.component.html',
