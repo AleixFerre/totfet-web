@@ -25,8 +25,9 @@
 - [x] Help page
 - [ ] BUG: When filtering by search field, the app goes inconsistent when marking as bought.
 - [ ] BUG: You can enter decimals on the quantity and it breaks on the server.
-- [ ] Add custom tags to each item.
 - [ ] Edit the list name?
+- [ ] Add custom tags to each item.
+- [ ] Title: Add the icon to the left and the name of the list to the center of the remaining space.
 
 ## Future implementations
 
