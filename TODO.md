@@ -28,6 +28,8 @@
 - [ ] Edit the list name?
 - [ ] Add custom tags to each item.
 - [ ] Title: Add the icon to the left and the name of the list to the center of the remaining space.
+- [ ] Posar un boto per descomprar un item
+- [ ] Fer que es puguin reordenar items
 
 ## Future implementations
 
