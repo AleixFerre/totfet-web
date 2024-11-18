@@ -38,3 +38,5 @@
 - [ ] Recurrent items
 - [ ] Add image link field
 - [ ] Add admin panel that only ME can have access to
+- [ ] Tenir diferents receptes guardades i posar a la llista tots els ingredients d'aquell menjar
+  - [ ] Poder multiplicar les racions per x persones
