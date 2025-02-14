@@ -25,6 +25,7 @@
 - [x] Help page
 - [ ] BUG: When filtering by search field, the app goes inconsistent when marking as bought.
 - [ ] BUG: You can enter decimals on the quantity and it breaks on the server.
+- [ ] BUG: It does not show any alert when adding a new item that already exists in the bought list.
 - [ ] Edit the list name?
 - [ ] Add custom tags to each item.
 - [ ] Title: Add the icon to the left and the name of the list to the center of the remaining space.
