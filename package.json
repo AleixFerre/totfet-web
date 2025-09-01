@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy --base-href=https://aleixferre.github.io/totfet-web/"
+    "deploy": "ng deploy --base-href=https://totfet.aleixferre.com/"
   },
   "private": true,
   "dependencies": {
