@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1756743339850,
-  "index": "https://totfet.aleixferre.com/index.html",
+  "timestamp": 1756744308812,
+  "index": "https://totfet-web.aleixferre.com/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,14 +11,14 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://totfet.aleixferre.com/chunk-5RZHERY3.js",
-        "https://totfet.aleixferre.com/chunk-VAGQVWDK.js",
-        "https://totfet.aleixferre.com/favicon.ico",
-        "https://totfet.aleixferre.com/index.html",
-        "https://totfet.aleixferre.com/main-QKQPA4BE.js",
-        "https://totfet.aleixferre.com/manifest.webmanifest",
-        "https://totfet.aleixferre.com/polyfills-RT5I6R6G.js",
-        "https://totfet.aleixferre.com/styles-PPC54B4Z.css"
+        "https://totfet-web.aleixferre.com/chunk-5RZHERY3.js",
+        "https://totfet-web.aleixferre.com/chunk-VAGQVWDK.js",
+        "https://totfet-web.aleixferre.com/favicon.ico",
+        "https://totfet-web.aleixferre.com/index.html",
+        "https://totfet-web.aleixferre.com/main-QKQPA4BE.js",
+        "https://totfet-web.aleixferre.com/manifest.webmanifest",
+        "https://totfet-web.aleixferre.com/polyfills-RT5I6R6G.js",
+        "https://totfet-web.aleixferre.com/styles-PPC54B4Z.css"
       ],
       "patterns": []
     },
@@ -30,38 +30,38 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://totfet.aleixferre.com/assets/fonts/Open Sans/OpenSans-Regular.ttf",
-        "https://totfet.aleixferre.com/assets/icons/icon-128x128.png",
-        "https://totfet.aleixferre.com/assets/icons/icon-144x144.png",
-        "https://totfet.aleixferre.com/assets/icons/icon-152x152.png",
-        "https://totfet.aleixferre.com/assets/icons/icon-192x192.png",
-        "https://totfet.aleixferre.com/assets/icons/icon-384x384.png",
-        "https://totfet.aleixferre.com/assets/icons/icon-512x512.png",
-        "https://totfet.aleixferre.com/assets/icons/icon-72x72.png",
-        "https://totfet.aleixferre.com/assets/icons/icon-96x96.png"
+        "https://totfet-web.aleixferre.com/assets/fonts/Open Sans/OpenSans-Regular.ttf",
+        "https://totfet-web.aleixferre.com/assets/icons/icon-128x128.png",
+        "https://totfet-web.aleixferre.com/assets/icons/icon-144x144.png",
+        "https://totfet-web.aleixferre.com/assets/icons/icon-152x152.png",
+        "https://totfet-web.aleixferre.com/assets/icons/icon-192x192.png",
+        "https://totfet-web.aleixferre.com/assets/icons/icon-384x384.png",
+        "https://totfet-web.aleixferre.com/assets/icons/icon-512x512.png",
+        "https://totfet-web.aleixferre.com/assets/icons/icon-72x72.png",
+        "https://totfet-web.aleixferre.com/assets/icons/icon-96x96.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://totfet.aleixferre.com/assets/fonts/Open Sans/OpenSans-Regular.ttf": "76ea5d4c70539ad9b0e7faf7e4fbe3bae8a961c7",
-    "https://totfet.aleixferre.com/assets/icons/icon-128x128.png": "1a051cb2268c2974e7fa9308426d81dbf716b6b2",
-    "https://totfet.aleixferre.com/assets/icons/icon-144x144.png": "8e94ba19f87af74428b20461e6e0e41e48199d58",
-    "https://totfet.aleixferre.com/assets/icons/icon-152x152.png": "573d40c80ff5154cb35d4015f12f3a13b5cbfef6",
-    "https://totfet.aleixferre.com/assets/icons/icon-192x192.png": "bff402bf69b9c9cea8c77987dd6f5a20dced8f48",
-    "https://totfet.aleixferre.com/assets/icons/icon-384x384.png": "7c4aab24c2238751ad080c2fa5fb438eebb2d960",
-    "https://totfet.aleixferre.com/assets/icons/icon-512x512.png": "f246cfab1ca9ba15114527a164d8edf2090a8fe2",
-    "https://totfet.aleixferre.com/assets/icons/icon-72x72.png": "1de371f5b5807349367f909bfe2a1bb5441e2a23",
-    "https://totfet.aleixferre.com/assets/icons/icon-96x96.png": "6726406468296c0bcdf9a5ab05f7017d25570c05",
-    "https://totfet.aleixferre.com/chunk-5RZHERY3.js": "c756f1c9085db885e49657d0baea47d2b2130356",
-    "https://totfet.aleixferre.com/chunk-VAGQVWDK.js": "9bbd913f227f7500570426e2bf832137bbcaeac7",
-    "https://totfet.aleixferre.com/favicon.ico": "aa01d96d57b19114ef8c9d510abcdc0b5949a829",
-    "https://totfet.aleixferre.com/index.html": "8d07930552057ca7155abb54b7c9882e6a73f409",
-    "https://totfet.aleixferre.com/main-QKQPA4BE.js": "27b75b09a72890cae3f29858f42e381733d61f48",
-    "https://totfet.aleixferre.com/manifest.webmanifest": "0d196826a001cad5f0654f70cd92cd2f5f729e4d",
-    "https://totfet.aleixferre.com/polyfills-RT5I6R6G.js": "fe9f024576f21ff6314cf8f8332cde58b9a12416",
-    "https://totfet.aleixferre.com/styles-PPC54B4Z.css": "0fdfce371f185ae6c63a9a8980508ce9db12cd66"
+    "https://totfet-web.aleixferre.com/assets/fonts/Open Sans/OpenSans-Regular.ttf": "76ea5d4c70539ad9b0e7faf7e4fbe3bae8a961c7",
+    "https://totfet-web.aleixferre.com/assets/icons/icon-128x128.png": "1a051cb2268c2974e7fa9308426d81dbf716b6b2",
+    "https://totfet-web.aleixferre.com/assets/icons/icon-144x144.png": "8e94ba19f87af74428b20461e6e0e41e48199d58",
+    "https://totfet-web.aleixferre.com/assets/icons/icon-152x152.png": "573d40c80ff5154cb35d4015f12f3a13b5cbfef6",
+    "https://totfet-web.aleixferre.com/assets/icons/icon-192x192.png": "bff402bf69b9c9cea8c77987dd6f5a20dced8f48",
+    "https://totfet-web.aleixferre.com/assets/icons/icon-384x384.png": "7c4aab24c2238751ad080c2fa5fb438eebb2d960",
+    "https://totfet-web.aleixferre.com/assets/icons/icon-512x512.png": "f246cfab1ca9ba15114527a164d8edf2090a8fe2",
+    "https://totfet-web.aleixferre.com/assets/icons/icon-72x72.png": "1de371f5b5807349367f909bfe2a1bb5441e2a23",
+    "https://totfet-web.aleixferre.com/assets/icons/icon-96x96.png": "6726406468296c0bcdf9a5ab05f7017d25570c05",
+    "https://totfet-web.aleixferre.com/chunk-5RZHERY3.js": "c756f1c9085db885e49657d0baea47d2b2130356",
+    "https://totfet-web.aleixferre.com/chunk-VAGQVWDK.js": "9bbd913f227f7500570426e2bf832137bbcaeac7",
+    "https://totfet-web.aleixferre.com/favicon.ico": "aa01d96d57b19114ef8c9d510abcdc0b5949a829",
+    "https://totfet-web.aleixferre.com/index.html": "6a78a3eba1e0d5b7922dbbc028baba0130fb3e61",
+    "https://totfet-web.aleixferre.com/main-QKQPA4BE.js": "27b75b09a72890cae3f29858f42e381733d61f48",
+    "https://totfet-web.aleixferre.com/manifest.webmanifest": "0d196826a001cad5f0654f70cd92cd2f5f729e4d",
+    "https://totfet-web.aleixferre.com/polyfills-RT5I6R6G.js": "fe9f024576f21ff6314cf8f8332cde58b9a12416",
+    "https://totfet-web.aleixferre.com/styles-PPC54B4Z.css": "0fdfce371f185ae6c63a9a8980508ce9db12cd66"
   },
   "navigationUrls": [
     {
