@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -10,11 +10,11 @@ import {
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-multitenant-add',
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatDialogTitle, MatDialogContent],
-  templateUrl: './multitenant-add.component.html',
-  styleUrl: './multitenant-add.component.scss',
+    selector: 'app-multitenant-add',
+    imports: [MatDialogModule, MatButtonModule, MatDialogTitle, MatDialogContent],
+    templateUrl: './multitenant-add.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './multitenant-add.component.scss'
 })
 export class MultitenantAddComponent {
   constructor(

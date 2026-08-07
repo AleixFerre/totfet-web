@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -14,20 +14,20 @@ import { MatInputModule } from '@angular/material/input';
 import { Item } from '../../../home/items-list/items.model';
 
 @Component({
-  selector: 'app-delete-item',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogClose,
-  ],
-  templateUrl: './delete-item.component.html',
-  styleUrl: './delete-item.component.scss',
+    selector: 'app-delete-item',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatButtonModule,
+        MatDialogTitle,
+        MatDialogContent,
+        MatDialogActions,
+        MatDialogClose,
+    ],
+    templateUrl: './delete-item.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './delete-item.component.scss'
 })
 export class DeleteItemComponent {
   constructor(

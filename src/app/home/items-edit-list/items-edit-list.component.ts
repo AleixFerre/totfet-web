@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   MatBottomSheet,
   MatBottomSheetModule,
@@ -20,20 +20,20 @@ import { Item } from '../items-list/items.model';
 import { NewItemComponent } from './new-item/new-item.component';
 
 @Component({
-  selector: 'app-items-edit-list',
-  standalone: true,
-  imports: [
-    AsyncPipe,
-    MatBottomSheetModule,
-    MatDividerModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatDialogModule,
-    CardComponent,
-  ],
-  templateUrl: './items-edit-list.component.html',
-  styleUrl: './items-edit-list.component.scss',
+    selector: 'app-items-edit-list',
+    imports: [
+        AsyncPipe,
+        MatBottomSheetModule,
+        MatDividerModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatDialogModule,
+        CardComponent,
+    ],
+    templateUrl: './items-edit-list.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './items-edit-list.component.scss'
 })
 export class ItemsEditListComponent {
   openItems = this.itemsService.openItems;

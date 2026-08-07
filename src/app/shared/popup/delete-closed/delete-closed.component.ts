@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -12,20 +12,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-delete-closed',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogClose,
-  ],
-  templateUrl: './delete-closed.component.html',
-  styleUrl: './delete-closed.component.scss',
+    selector: 'app-delete-closed',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatButtonModule,
+        MatDialogTitle,
+        MatDialogContent,
+        MatDialogActions,
+        MatDialogClose,
+    ],
+    templateUrl: './delete-closed.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './delete-closed.component.scss'
 })
 export class DeleteClosedComponent {
   constructor(public dialogRef: MatDialogRef<DeleteClosedComponent>) {}

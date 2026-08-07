@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { LOCAL_STORAGE_KEYS } from '../shared/globals';
@@ -9,17 +9,17 @@ import { ItemsListComponent } from './items-list/items-list.component';
 import { ItemsListService } from './items-list/items-list.service';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    ItemsListComponent,
-    ItemsEditListComponent,
-    BottomBarMenuComponent,
-    MatTabsModule,
-    MatProgressBarModule,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+    selector: 'app-home',
+    imports: [
+        ItemsListComponent,
+        ItemsEditListComponent,
+        BottomBarMenuComponent,
+        MatTabsModule,
+        MatProgressBarModule,
+    ],
+    templateUrl: './home.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   defaultSelectedIndex = localStorage.getItem(LOCAL_STORAGE_KEYS.SELECTED_TAB);

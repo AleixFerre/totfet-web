@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -23,23 +23,23 @@ import { ItemsListService } from '../../items-list/items-list.service';
 import { Item } from '../../items-list/items.model';
 
 @Component({
-  selector: 'app-new-item',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatCheckboxModule,
-    MatSlideToggleModule,
-    MatAutocompleteModule,
-    AutofocusDirective,
-    AsyncPipe,
-  ],
-  templateUrl: './new-item.component.html',
-  styleUrl: './new-item.component.scss',
+    selector: 'app-new-item',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatCheckboxModule,
+        MatSlideToggleModule,
+        MatAutocompleteModule,
+        AutofocusDirective,
+        AsyncPipe,
+    ],
+    templateUrl: './new-item.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './new-item.component.scss'
 })
 export class NewItemComponent implements OnInit {
   itemForm = new FormGroup({

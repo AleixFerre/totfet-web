@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
@@ -9,11 +9,11 @@ import { ItemsListService } from './items-list.service';
 import { Item } from './items.model';
 
 @Component({
-  selector: 'app-items-list',
-  standalone: true,
-  imports: [AsyncPipe, MatIconModule, CardComponent, MatSnackBarModule],
-  templateUrl: './items-list.component.html',
-  styleUrl: './items-list.component.scss',
+    selector: 'app-items-list',
+    imports: [AsyncPipe, MatIconModule, CardComponent, MatSnackBarModule],
+    templateUrl: './items-list.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './items-list.component.scss'
 })
 export class ItemsListComponent {
   items: Observable<Item[]> = this.itemsService.openItems;

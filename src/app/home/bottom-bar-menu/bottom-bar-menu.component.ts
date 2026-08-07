@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   MatBottomSheet,
   MatBottomSheetModule,
@@ -12,19 +12,19 @@ import { ReloadButtonComponent } from './reload-button/reload-button.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @Component({
-  selector: 'app-bottom-bar-menu',
-  standalone: true,
-  imports: [
-    MatBottomSheetModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    SearchBarComponent,
-    ReloadButtonComponent,
-    MultitenantButtonComponent,
-  ],
-  templateUrl: './bottom-bar-menu.component.html',
-  styleUrl: './bottom-bar-menu.component.scss',
+    selector: 'app-bottom-bar-menu',
+    imports: [
+        MatBottomSheetModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        SearchBarComponent,
+        ReloadButtonComponent,
+        MultitenantButtonComponent,
+    ],
+    templateUrl: './bottom-bar-menu.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './bottom-bar-menu.component.scss'
 })
 export class BottomBarMenuComponent {
   constructor(private _bottomSheet: MatBottomSheet) {}

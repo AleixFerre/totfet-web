@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   MatBottomSheet,
   MatBottomSheetModule,
@@ -8,11 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MultitenantMenuComponent } from './multitenant-menu/multitenant-menu.component';
 
 @Component({
-  selector: 'app-multitenant-button',
-  standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatBottomSheetModule],
-  templateUrl: './multitenant-button.component.html',
-  styleUrl: './multitenant-button.component.scss',
+    selector: 'app-multitenant-button',
+    imports: [MatButtonModule, MatIconModule, MatBottomSheetModule],
+    templateUrl: './multitenant-button.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './multitenant-button.component.scss'
 })
 export class MultitenantButtonComponent {
   constructor(private _bottomSheet: MatBottomSheet) {}

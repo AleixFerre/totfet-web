@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -20,20 +20,20 @@ import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatTooltipModule,
-    MatIconModule
-  ],
-  providers: [LoginService],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+    selector: 'app-login',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatTooltipModule,
+        MatIconModule
+    ],
+    providers: [LoginService],
+    templateUrl: './login.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   private snackBarRef!: MatSnackBarRef<TextOnlySnackBar>;
