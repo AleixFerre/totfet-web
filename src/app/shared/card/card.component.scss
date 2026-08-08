@@ -1,8 +1,19 @@
+@use 'breakpoints' as *;
+
+// The card is a grid/flex item of the list that renders it, so it fills its
+// cell and lets the list own the spacing between cards.
+:host {
+  display: block;
+}
+
 // Aura styling: a flat bordered surface with the theme's own radius, rather
 // than Material's drop-shadow elevation.
 .card {
-  margin: 0.5rem 1rem;
-  padding: 0.75rem 1rem;
+  height: 100%;
+  // Tight on a phone, where the row is a number, a name and up to two icon
+  // buttons on a 320px screen; roomier once there is width for it.
+  padding: 0.5rem 0.625rem;
+  gap: 0.5rem;
   background-color: var(--p-content-background);
   color: var(--p-content-color);
   border: 1px solid var(--p-content-border-color);
@@ -10,17 +21,20 @@
   font-size: 1rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
   transition: background-color var(--p-transition-duration),
     border-color var(--p-transition-duration);
 
-  &:hover {
-    background-color: var(--p-content-hover-background);
-    border-color: var(--p-primary-color);
+  @include mq(md) {
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
   }
 
-  &.first {
-    margin-top: 0;
+  // Gated on a real pointer: a bare `:hover` sticks on a touch screen, so every
+  // item the user checked off would stay highlighted until they tapped
+  // somewhere else.
+  @include hover {
+    background-color: var(--p-content-hover-background);
+    border-color: var(--p-primary-color);
   }
 
   // Reads as an Aura badge/pill rather than a bare number.
@@ -40,18 +54,25 @@
     line-height: 1;
   }
 
+  // Takes all the space the badge and the buttons don't, which is what pushes
+  // the actions to the trailing edge — the old `.divider` spacer div existed
+  // only to do that. `min-width: 0` is what actually lets it truncate: a flex
+  // item's automatic minimum is its content width, so without it a long name
+  // would push the buttons off the card instead.
+  //
+  // Two lines rather than one: on a 320px screen the edit tab spends most of
+  // the row on the badge and two icon buttons, and a single clipped line cut
+  // names down to their first word ("Formatge…", "Llet senc…") — useless when
+  // the whole point is telling one item from another.
   .name {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    font-weight: 500;
-  }
-
-  .icon {
-    flex: 0 0 auto;
-  }
-
-  .divider {
     flex: 1;
+    min-width: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    font-weight: 500;
   }
 }

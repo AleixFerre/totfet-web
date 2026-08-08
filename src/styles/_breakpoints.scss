@@ -1,0 +1,48 @@
+@use 'sass:map';
+
+/// Mobile-first breakpoint scale.
+///
+/// Every query here is `min-width`, and that is the whole contract: a
+/// component's unqualified rules *are* the phone layout, and each `mq()` block
+/// is an additive enhancement for a wider screen. Nothing is expressed as
+/// `max-width`, so no rule ever has to be undone on the way up.
+///
+/// Values are in `rem` on purpose — media-query `rem` resolves against the
+/// browser's root font size, not the document's, so the breakpoints move with a
+/// user who has bumped their default text size.
+$breakpoints: (
+  sm: 30rem,
+  // 480px  — large phones, phone landscape
+  md: 48rem,
+  // 768px  — tablets
+  lg: 64rem,
+  // 1024px — laptops
+  xl: 80rem,
+  // 1280px — desktop monitors
+);
+
+@mixin mq($name) {
+  $min: map.get($breakpoints, $name);
+
+  @if $min == null {
+    @error "Unknown breakpoint `#{$name}` — expected one of #{map.keys($breakpoints)}.";
+  }
+
+  @media (min-width: $min) {
+    @content;
+  }
+}
+
+/// Hover styles, gated on the device actually having a hover-capable pointer.
+///
+/// A bare `:hover` sticks on a touch screen: the browser keeps it applied after
+/// a tap until something else is tapped, so every card the user checks off
+/// would stay lit up. This app is used on a phone with one thumb, so that
+/// matters more here than the extra nesting costs.
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}

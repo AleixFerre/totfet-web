@@ -1,10 +1,20 @@
+:host {
+  display: block;
+}
+
 .centered {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  gap: 0.5rem;
+  // `height: 100%` never resolved — no ancestor has a definite height, so it
+  // fell back to `auto` and the page hugged the top. `dvh` measures the
+  // viewport that is actually on screen; `vh` first as the fallback.
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--app-gutter);
+  text-align: center;
 
   .title {
     margin: 0;

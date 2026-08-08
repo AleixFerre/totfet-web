@@ -1,6 +1,17 @@
-// Replaces <mat-dialog-actions align="end">.
+:host {
+  display: block;
+}
+
+p {
+  margin-top: 0;
+}
+
+// Replaces <mat-dialog-actions align="end">. Wrapping is load-bearing on a
+// phone: "Sortir de la sessió" next to "Cancel·lar" is wider than a 320px
+// dialog, so without this the confirm button is pushed off the edge.
 .actions {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   gap: 0.5rem;
   margin-top: 1rem;

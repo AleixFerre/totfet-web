@@ -1,12 +1,25 @@
+@use 'breakpoints' as *;
+
+:host {
+  display: block;
+}
+
 .help-icon {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: calc(var(--app-gutter) + env(safe-area-inset-top, 0px));
+  right: var(--app-gutter);
+  // The glyph alone is a ~20px target. Padding it out to 44px makes it
+  // reachable with a thumb without changing how it looks.
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
   font-size: 1.25rem;
   color: var(--p-text-muted-color);
   transition: color var(--p-transition-duration);
 
-  &:hover {
+  @include hover {
     color: var(--p-primary-color);
   }
 }
@@ -16,21 +29,39 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
   gap: 0.25rem;
+  // `height: 100%` never actually resolved: neither <app-root> nor this host
+  // has a definite height, so the percentage fell back to `auto` and the form
+  // sat at the top of the page. `dvh` is measured against the viewport that is
+  // really on screen, so the form also re-centres when the mobile URL bar
+  // collapses. `vh` first as the fallback.
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--app-gutter);
+  padding-bottom: calc(var(--app-gutter) + env(safe-area-inset-bottom, 0px));
 
   .title {
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
+    margin: 0 0 1.5rem;
+    text-align: center;
   }
 }
 
 .input {
-  width: 90%;
-  max-width: 500px;
+  // Fluid on a phone, capped at a comfortable field width on anything larger —
+  // the old `width: 90%` left a 10% gutter on a 320px screen and a 100px one on
+  // a laptop.
+  width: 100%;
+  max-width: 22rem;
   // Aura's default `over` float label sits above the field's top edge when
   // raised, so each field needs headroom to avoid clipping.
   padding-top: 0.75rem;
   margin-bottom: 0.25rem;
+}
+
+// Full-width primary action: on a phone the CTA should be as wide as the fields
+// it submits, and `fluid` on the button makes the inner <button> follow.
+.submit {
+  width: 100%;
+  max-width: 22rem;
+  margin-top: 0.75rem;
 }

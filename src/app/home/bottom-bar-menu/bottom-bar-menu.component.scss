@@ -1,21 +1,40 @@
+@use 'breakpoints' as *;
+
+// The host is positioned and sized by the parent (see `.bottom-bar-menu` in
+// home.component.scss); this file only lays out what sits inside it.
+
+// Overhangs the top edge of the bar. `--app-bar-inset` has to be added back
+// here because `bottom` resolves against the bar's padding box, which the
+// safe-area padding pushes upward — without it the FAB sinks into the bar on a
+// gesture-navigation phone.
 .add-button {
   position: absolute;
-  bottom: 1.5rem;
-  right: 1rem;
+  right: var(--app-gutter);
+  bottom: calc(1.25rem + var(--app-bar-inset));
   z-index: 1;
 }
 
+// Four icon buttons plus the FAB have to fit a 320px screen, so the row starts
+// with no gap at all and only opens up once there is width to spend.
 .icons-list {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  margin-left: 0.25rem;
+  gap: 0;
+
+  @include mq(sm) {
+    gap: 0.25rem;
+  }
 }
 
 .divider {
   display: inline-block;
+  flex: 0 0 auto;
   width: 1px;
-  height: 24px;
-  margin: 0 0.75rem;
+  height: 1.5rem;
+  margin: 0 0.25rem;
   background-color: var(--p-content-border-color);
+
+  @include mq(sm) {
+    margin: 0 0.75rem;
+  }
 }

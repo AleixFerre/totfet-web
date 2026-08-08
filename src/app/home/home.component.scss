@@ -1,11 +1,49 @@
+@use 'breakpoints' as *;
+
+// The page is one centred reading column. Below --app-content-width it is
+// simply the full screen; above it, the column stops growing and the desktop
+// gets margins rather than a list stretched edge to edge.
+//
+// It is also a full-height flex column, so the tab panel's surface runs to the
+// bottom of the screen instead of stopping under the last card with a hard
+// edge — barely noticeable on a phone, glaring on a desktop where the list
+// fills a third of the window.
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: var(--app-content-width);
+  margin-inline: auto;
+}
+
+p-tabs,
+p-tabpanels {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+p-tabpanels {
+  // The bottom bar and the FAB overhanging it are `position: fixed`, so the
+  // page has to reserve the space they cover. Replaces the `.final` spacer divs
+  // each list used to render for the same reason.
+  padding-bottom: var(--app-scroll-clearance);
+}
+
 .title {
   font-size: 1.125rem;
   font-weight: 600;
   margin: 0;
-  padding: 1rem 0 0.75rem;
-  width: 100%;
+  padding: 1rem var(--app-gutter) 0.75rem;
   text-align: center;
   letter-spacing: -0.01em;
+
+  @include mq(md) {
+    font-size: 1.375rem;
+    padding-top: 1.5rem;
+  }
 }
 
 // Was `:host ::ng-deep .mat-mdc-tab-header`. p-tablist is an element in this
@@ -21,6 +59,37 @@ p-tablist {
   background-color: var(--p-tabs-tablist-background);
 }
 
+// Aura sizes tabs to their label and packs them at the leading edge, which is
+// built for a scrollable strip of many tabs. There are exactly two here, so
+// they split the strip instead: it fills the column at every width and each
+// gets half of it as a tap target rather than ~7rem of it.
+p-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Aura's active-bar element has its `width` and `left` written as inline pixels
+// by TabList.updateInkBar(), which only runs when the selected tab changes —
+// its ResizeObserver updates the scroll buttons, not the bar. Content-width
+// tabs never move, so that was safe; proportional tabs move with every resize,
+// which would leave the bar stranded at its old width after a phone rotation.
+//
+// Dropping it costs nothing under this preset: Aura's bar is 1px of
+// primary.color at `bottom: -1px`, exactly overlapping the bottom border the
+// active tab already draws in the same colour (tab.activeBorderColor), so the
+// underline below is that border, laid out by CSS and never able to go stale.
+// A preset with a thicker active bar than its tab border would need this
+// revisited.
+//
+// ::ng-deep is unavoidable here and used nowhere else: the bar lives inside
+// p-tablist's own template, so it carries none of this component's
+// encapsulation attributes.
+:host ::ng-deep .p-tablist-active-bar {
+  display: none;
+}
+
 // `display: block` gives the absolutely-positioned progress bar a containing
 // block. The :not([hidden]) guard is essential: Optimus marks the inactive
 // panel with the `hidden` attribute, and a bare `display: block` here would
@@ -29,6 +98,7 @@ p-tablist {
 p-tabpanel:not([hidden]) {
   display: block;
   position: relative;
+  flex: 1;
 }
 
 .top {
@@ -37,15 +107,41 @@ p-tabpanel:not([hidden]) {
   width: 100%;
 }
 
+// Fixed rather than sticky so it survives the tab panels swapping height, and
+// centred on the same column as the content so it doesn't read as a stray
+// full-width toolbar on a desktop.
+//
+// Deliberately centred with auto margins and not `transform: translateX(-50%)`:
+// a transformed ancestor becomes the containing block for every
+// `position: fixed` descendant, which would trap the search bar's overlay
+// inside this 3.5rem strip.
 .bottom-bar-menu {
   position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--app-content-width);
+  z-index: 1000;
+
   display: flex;
   align-items: center;
-  padding: 0.5rem;
-  height: 3rem;
-  width: calc(100% - 1rem);
-  z-index: 1000;
+  min-height: var(--app-bar-height);
+  padding: 0.5rem var(--app-gutter);
+  // Lifts the controls above the iOS home indicator / Android gesture bar.
+  padding-bottom: calc(0.5rem + var(--app-bar-inset));
+
   background-color: var(--p-content-background);
   border-top: 1px solid var(--p-content-border-color);
+
+  @include mq(md) {
+    // With room to spare it detaches from the bottom edge and reads as a
+    // floating toolbar over the list instead of a docked footer.
+    bottom: 1rem;
+    width: calc(100% - 2 * var(--app-gutter));
+    border: 1px solid var(--p-content-border-color);
+    border-radius: var(--p-content-border-radius);
+    box-shadow: var(--p-overlay-modal-shadow);
+  }
 }

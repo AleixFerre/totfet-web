@@ -1,6 +1,17 @@
-// Replaces <mat-dialog-actions align="end">.
+:host {
+  display: block;
+}
+
+p {
+  margin-top: 0;
+}
+
+// Replaces <mat-dialog-actions align="end">. Wrapping is load-bearing on a
+// phone: the dialog is capped at the screen width minus the gutters, and the
+// two labels side by side don't fit that at 320px.
 .actions {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   gap: 0.5rem;
   margin-top: 1rem;

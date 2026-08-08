@@ -1,3 +1,14 @@
+// Rendered inside a bottom drawer, which supplies the horizontal padding and
+// the safe-area inset (see `.p-drawer-bottom` in styles.scss). This file only
+// has to deal with the form itself.
+:host {
+  display: block;
+}
+
+h3 {
+  margin-top: 0;
+}
+
 .input {
   width: 100%;
   // Headroom for Aura's default `over` float label, which rises above the
@@ -21,22 +32,26 @@
   }
 }
 
+// Submit plus the "add another" checkbox. They wrap rather than overflow: on a
+// 320px screen the two together are wider than the drawer.
 .horizontal {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
   align-items: center;
 }
 
 // Optimus checkbox/switch labels are siblings rather than children, unlike
-// mat-checkbox / mat-slide-toggle.
+// mat-checkbox / mat-slide-toggle. The row is given a 44px height so the label
+// is part of the tap target and not just the 20px control.
 .checkbox {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 20px;
-}
+  min-height: 2.75rem;
 
-.horizontal .checkbox {
-  margin-bottom: 0;
+  label {
+    cursor: pointer;
+  }
 }

@@ -2,9 +2,21 @@
 // override is gone: it only existed to hide Material's hint/error row, and
 // Optimus has no subscript wrapper. (It was also not :host-scoped, so it leaked
 // globally.)
+//
+// The box is an overlay rather than an inline field: the bottom bar has no room
+// for a text input on a phone, and pinning it to the top keeps it clear of the
+// on-screen keyboard. It is `fixed`, so it escapes the bar it is nested in —
+// which is why the bar must never carry a `transform`.
 .search-box {
   position: fixed;
-  top: 1rem;
-  left: 1rem;
-  width: calc(100% - 2rem);
+  top: calc(1rem + env(safe-area-inset-top, 0px));
+  // Auto margins between left/right 0 centre it; a fixed `left: 1rem` used to
+  // pin it to the screen edge, which on a desktop put it nowhere near the list
+  // it filters.
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  // Same gutters and same reading column as the content behind it.
+  width: calc(100% - 2 * var(--app-gutter));
+  max-width: var(--app-content-width);
 }

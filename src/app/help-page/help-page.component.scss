@@ -1,8 +1,15 @@
+@use 'breakpoints' as *;
+
+:host {
+  display: block;
+}
+
 // Aura: a bordered bar rather than a Material elevation shadow.
 .header {
-  padding: 0.75rem 1rem;
+  padding: 0.75rem var(--app-gutter);
+  padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
   display: flex;
-  gap: 1.5rem;
+  gap: 0.75rem;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -15,28 +22,48 @@
   }
 
   .back-button {
-    display: flex;
+    // A bare 20px glyph is the hardest thing on this page to hit with a thumb;
+    // the box pads it out to 44px, and the negative inline start margin keeps
+    // the icon itself optically on the gutter.
+    flex: 0 0 auto;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-inline-start: -0.75rem;
     color: var(--p-text-muted-color);
     font-size: 1.25rem;
     transition: color var(--p-transition-duration);
 
-    &:hover {
+    @include hover {
       color: var(--p-primary-color);
     }
   }
 }
 
 .container {
-  max-width: 1200px;
-  width: 90vw;
-  margin: auto;
-  padding-bottom: 10rem;
+  // Was `width: 90vw` with an 80vw video inside it. `vw` includes the
+  // scrollbar, so on a desktop the column overflowed its own centring, and on a
+  // phone the 10% margin shrank with the screen exactly where it was needed
+  // most. Percentage width plus the shared gutter behaves at both ends.
+  width: 100%;
+  max-width: var(--app-content-width);
+  margin-inline: auto;
+  padding: 0 var(--app-gutter) 4rem;
 
   .video {
-    width: 80vw;
-    aspect-ratio: 16/9;
-    max-width: 600px;
+    display: block;
+    // Fills the column and lets `aspect-ratio` derive the height, so the
+    // player scales with the screen instead of being pinned to a viewport
+    // fraction.
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--p-content-border-radius);
+
+    @include mq(md) {
+      max-width: 37.5rem;
+    }
   }
 }
-

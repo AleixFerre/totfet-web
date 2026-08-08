@@ -1,8 +1,7 @@
-<div class="card" [ngClass]="{'first': isFirst}">
+<div class="card">
   <span class="amount">{{ item.amount }}</span>
   <span class="name">{{ item.name }}</span>
-  <div class="divider"></div>
-  @for (action of actions; track action; let i = $index) {
+  @for (action of actions; track action) {
     <p-button
       [text]="true"
       [rounded]="true"

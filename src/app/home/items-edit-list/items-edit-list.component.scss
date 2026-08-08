@@ -1,5 +1,35 @@
-.error {
-  min-width: 40vw;
+@use 'breakpoints' as *;
+
+// The list owns the spacing between cards, so the card itself carries no
+// margin. `.error { min-width: 40vw }` was dropped: nothing in the template
+// has ever used that class.
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem var(--app-gutter) 0;
+
+  // A laptop-width screen fits more than one card per row, and a single 52rem
+  // strip of one-line cards wastes most of it. `auto-fill` picks the count from
+  // the available width rather than from a hardcoded column number.
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    align-content: start;
+    gap: 0.75rem;
+  }
+}
+
+// Section furniture introduces the cards that follow it, so it spans the whole
+// grid rather than taking a cell beside them. (`.title` is also used inside
+// `.title-container`, where it is not a grid item and the rule is inert.)
+.title,
+.title-container,
+.label,
+p-divider {
+  @include mq(lg) {
+    grid-column: 1 / -1;
+  }
 }
 
 .title-container {
@@ -7,11 +37,16 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-right: 1rem;
+  gap: 0.5rem;
 }
 
+// Both section headings share a row height so "Per comprar" and "Comprat" sit
+// on the same rhythm even though only the second one has a button next to it.
 .title {
-  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  margin: 0;
   color: var(--p-text-muted-color);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -20,11 +55,6 @@
 }
 
 .label {
-  margin-left: 1rem;
-  margin-bottom: 2rem;
+  margin: 0;
   color: var(--p-text-muted-color);
-}
-
-.final {
-  height: 5rem;
 }

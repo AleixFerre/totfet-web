@@ -4,6 +4,70 @@
 //
 // Colours come from Aura's semantic tokens only — no hardcoded hex. Swapping
 // the preset (or its primary palette) in app.config.ts restyles the whole app.
+//
+// Layout is mobile-first: every unqualified rule below describes a phone, and
+// the `mq()` blocks (see styles/_breakpoints.scss) widen things as the screen
+// grows.
+
+@use 'breakpoints' as *;
+
+// ---------------------------------------------------------------------------
+// Layout tokens
+// ---------------------------------------------------------------------------
+// Deliberately named after Aura's own `--p-*` tokens so the two read as one
+// system. Components consume these instead of hardcoding rem values, which
+// means a breakpoint only has to redeclare a variable rather than restate the
+// layout that depends on it.
+:root {
+  // Space between content and the edge of the screen.
+  --app-gutter: 1rem;
+
+  // The reading column. Below this width the app is fluid; above it content
+  // stops growing and centres, instead of stretching a shopping list across a
+  // 27" monitor.
+  --app-content-width: 44rem;
+
+  // Bottom bar geometry. `--app-bar-inset` is the strip iOS and Android reserve
+  // for the home indicator / gesture bar; `env()` resolves to 0 everywhere
+  // else, which is why it can be added unconditionally.
+  --app-bar-height: 3.5rem;
+  --app-bar-inset: env(safe-area-inset-bottom, 0px);
+  --app-bar-total: calc(var(--app-bar-height) + var(--app-bar-inset));
+
+  // Bottom padding for scrolling content: enough to clear the bar plus the FAB
+  // that overhangs it, so the last card is never stranded underneath.
+  --app-scroll-clearance: calc(var(--app-bar-total) + 3rem);
+}
+
+@include mq(md) {
+  :root {
+    --app-gutter: 1.5rem;
+  }
+}
+
+@include mq(lg) {
+  :root {
+    --app-gutter: 2rem;
+    --app-content-width: 52rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Reset
+// ---------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+  // Every width below is written as `100%` + padding rather than
+  // `calc(100% - 2rem)`; that only holds with a border-box sizing model.
+  box-sizing: border-box;
+}
+
+html {
+  // Stops iOS Safari inflating body text when the phone is rotated to
+  // landscape, which quietly breaks every width calculation in the app.
+  -webkit-text-size-adjust: 100%;
+}
 
 html,
 body {
@@ -18,10 +82,112 @@ body {
   color: var(--p-text-color);
 }
 
+body {
+  // `height: 100%` tracks the *largest* viewport, so on a phone it stays tall
+  // while the URL bar is visible and leaves a dead strip at the bottom. `dvh`
+  // follows the viewport that is actually on screen. `vh` first as the fallback
+  // for anything that doesn't know the dynamic units.
+  min-height: 100vh;
+  min-height: 100dvh;
+  // Removes the grey block iOS flashes over every tapped card and button.
+  -webkit-tap-highlight-color: transparent;
+  // Keeps a rubber-band overscroll inside the app rather than bouncing the page
+  // behind it — noticeably better once installed as a PWA.
+  overscroll-behavior-y: contain;
+}
+
+// Angular's routed components are custom elements, which are `display: inline`
+// until told otherwise. Making the shell a block is what lets the routed pages
+// establish their own layout.
+app-root {
+  display: block;
+}
+
 h1,
 h2,
 h3,
 h4 {
   font-weight: 600;
   letter-spacing: -0.01em;
+  // Catalan list names get long; on a 320px screen an unbroken word would
+  // otherwise push the whole layout sideways.
+  overflow-wrap: break-word;
+}
+
+// Fluid type: one `clamp()` per level scales from the phone size to the desktop
+// size continuously, which is both smaller to ship and smoother to look at than
+// a font-size override at every breakpoint.
+h1 {
+  font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.25rem);
+}
+
+h2 {
+  font-size: clamp(1.35rem, 1.15rem + 1vw, 1.65rem);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.35rem);
+}
+
+// ---------------------------------------------------------------------------
+// Touch targets
+// ---------------------------------------------------------------------------
+// Aura sizes icon-only buttons at 2.5rem (40px). This app is almost entirely
+// icon buttons — the bottom bar, every card action — and 40px is under the 44px
+// minimum both Apple's and Google's guidelines ask for. Widening the token
+// rather than the components keeps it in one place, and it is scoped to coarse
+// pointers so a mouse-driven desktop keeps the tighter default.
+@media (pointer: coarse) {
+  :root {
+    --p-button-icon-only-width: 2.75rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Body-level overlays
+// ---------------------------------------------------------------------------
+// Drawers, dialogs and toasts are rendered at <body> (appendTo="body", or a
+// service-created overlay), outside every component's emulated encapsulation.
+// This sheet is the only place they can be reached from.
+
+// A bottom drawer spanning the full width is right on a phone and absurd on a
+// desktop, so it gets the same reading column as the content behind it.
+// `.p-drawer-bottom` ships `left: 0; width: 100%`, so pinning `right: 0` and
+// letting the auto margins do the work centres it without a transform.
+.p-drawer-bottom {
+  right: 0;
+  width: 100%;
+  max-width: var(--app-content-width);
+  margin-inline: auto;
+  // Keeps the last row of buttons clear of the iOS home indicator.
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  @include mq(md) {
+    // Once it no longer reaches the screen edges it reads as a sheet rather
+    // than a docked panel, so it takes the modal corner radius.
+    border-start-start-radius: var(--p-overlay-modal-border-radius);
+    border-start-end-radius: var(--p-overlay-modal-border-radius);
+  }
+}
+
+// The delete confirmations are auto-width, which on a 320px screen means a box
+// wider than the screen with no way to scroll to its buttons.
+.p-dialog {
+  max-width: calc(100vw - 2 * var(--app-gutter));
+}
+
+// Aura's toast is a fixed 25rem (400px) — wider than most phones.
+.p-toast {
+  max-width: calc(100vw - 2 * var(--app-gutter));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  // Transitions here are pure decoration, so they go. Animations are left
+  // alone on purpose: the indeterminate progress bar and the spinning refresh
+  // icon are the only signal that a request is in flight.
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
 }
