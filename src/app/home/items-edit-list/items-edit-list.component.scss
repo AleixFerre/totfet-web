@@ -12,11 +12,17 @@
 
 .title {
   margin-left: 1rem;
+  color: var(--p-text-muted-color);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .label {
   margin-left: 1rem;
   margin-bottom: 2rem;
+  color: var(--p-text-muted-color);
 }
 
 .final {

@@ -1,5 +1,8 @@
 .input {
   width: 100%;
+  // Headroom for Aura's default `over` float label, which rises above the
+  // field's top edge.
+  padding-top: 0.75rem;
   margin-bottom: 0.5rem;
 }
 

@@ -1,22 +1,24 @@
 .title {
-  font-size: larger;
-  font-weight: bold;
-  margin-top: 0;
-  padding-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 1rem 0 0.75rem;
   width: 100%;
   text-align: center;
+  letter-spacing: -0.01em;
 }
 
 // Was `:host ::ng-deep .mat-mdc-tab-header`. p-tablist is an element in this
 // component's own template, so it carries the emulated-encapsulation attribute
-// and can be styled directly — no ::ng-deep needed.
+// and can be styled directly — no ::ng-deep needed. The background is the tabs'
+// own Aura token so it stays in sync with the preset.
 p-tablist {
   display: block;
   position: sticky;
   position: -webkit-sticky; /* macOS/iOS Safari */
   top: 0;
   z-index: 1000;
-  background-color: var(--p-surface-900);
+  background-color: var(--p-tabs-tablist-background);
 }
 
 // `display: block` gives the absolutely-positioned progress bar a containing
@@ -38,9 +40,12 @@ p-tabpanel:not([hidden]) {
 .bottom-bar-menu {
   position: fixed;
   bottom: 0;
+  display: flex;
+  align-items: center;
   padding: 0.5rem;
   height: 3rem;
   width: calc(100% - 1rem);
   z-index: 1000;
-  background-color: var(--p-surface-800);
+  background-color: var(--p-content-background);
+  border-top: 1px solid var(--p-content-border-color);
 }

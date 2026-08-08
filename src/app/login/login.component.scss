@@ -1,7 +1,14 @@
 .help-icon {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.25rem;
+  color: var(--p-text-muted-color);
+  transition: color var(--p-transition-duration);
+
+  &:hover {
+    color: var(--p-primary-color);
+  }
 }
 
 .centered {
@@ -11,9 +18,19 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+  gap: 0.25rem;
+
+  .title {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+  }
 }
 
 .input {
   width: 90%;
   max-width: 500px;
+  // Aura's default `over` float label sits above the field's top edge when
+  // raised, so each field needs headroom to avoid clipping.
+  padding-top: 0.75rem;
+  margin-bottom: 0.25rem;
 }

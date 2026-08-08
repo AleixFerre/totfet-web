@@ -3,21 +3,21 @@ import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { MessageService } from '@openng/optimus-ui/api';
 import { provideOptimus } from '@openng/optimus-ui/config';
+import Aura from '@openng/optimus-ui-themes/aura';
 import { routes } from './app.routes';
 import { authInterceptor } from './auth/auth.interceptor';
 import { provideServiceWorker } from '@angular/service-worker';
-import { TotfetPreset } from './theme';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(withXhr(), withInterceptors([authInterceptor])),
     provideOptimus({
-      // Matches the filled look every form field had via Material's
-      // <mat-form-field appearance="fill">.
-      inputVariant: 'filled',
+      // Stock Aura, unmodified: emerald primary, zinc surfaces, outlined
+      // inputs. To rebrand, wrap this in definePreset(Aura, { semantic: {
+      // primary: {...} } }) rather than overriding colours in component SCSS.
       theme: {
-        preset: TotfetPreset,
+        preset: Aura,
         options: {
           // The app is dark-only, so the class is hardcoded on <html> rather
           // than following prefers-color-scheme.
