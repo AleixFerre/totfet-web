@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1756744460672,
+  "timestamp": 1786150868072,
   "index": "https://totfet.aleixferre.com/index.html",
   "assetGroups": [
     {
@@ -11,14 +11,12 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://totfet.aleixferre.com/chunk-5RZHERY3.js",
-        "https://totfet.aleixferre.com/chunk-VAGQVWDK.js",
         "https://totfet.aleixferre.com/favicon.ico",
         "https://totfet.aleixferre.com/index.html",
-        "https://totfet.aleixferre.com/main-QKQPA4BE.js",
+        "https://totfet.aleixferre.com/main-R2QWMXSH.js",
         "https://totfet.aleixferre.com/manifest.webmanifest",
-        "https://totfet.aleixferre.com/polyfills-RT5I6R6G.js",
-        "https://totfet.aleixferre.com/styles-PPC54B4Z.css"
+        "https://totfet.aleixferre.com/polyfills-5CFQRCPP.js",
+        "https://totfet.aleixferre.com/styles-7IZCE3V2.css"
       ],
       "patterns": []
     },
@@ -38,7 +36,11 @@
         "https://totfet.aleixferre.com/assets/icons/icon-384x384.png",
         "https://totfet.aleixferre.com/assets/icons/icon-512x512.png",
         "https://totfet.aleixferre.com/assets/icons/icon-72x72.png",
-        "https://totfet.aleixferre.com/assets/icons/icon-96x96.png"
+        "https://totfet.aleixferre.com/assets/icons/icon-96x96.png",
+        "https://totfet.aleixferre.com/media/openng-icons-4GST5W3O.woff2",
+        "https://totfet.aleixferre.com/media/openng-icons-AIISD63C.svg",
+        "https://totfet.aleixferre.com/media/openng-icons-GEFHGEHP.ttf",
+        "https://totfet.aleixferre.com/media/openng-icons-P53SE5CV.woff"
       ],
       "patterns": []
     }
@@ -54,14 +56,16 @@
     "https://totfet.aleixferre.com/assets/icons/icon-512x512.png": "f246cfab1ca9ba15114527a164d8edf2090a8fe2",
     "https://totfet.aleixferre.com/assets/icons/icon-72x72.png": "1de371f5b5807349367f909bfe2a1bb5441e2a23",
     "https://totfet.aleixferre.com/assets/icons/icon-96x96.png": "6726406468296c0bcdf9a5ab05f7017d25570c05",
-    "https://totfet.aleixferre.com/chunk-5RZHERY3.js": "c756f1c9085db885e49657d0baea47d2b2130356",
-    "https://totfet.aleixferre.com/chunk-VAGQVWDK.js": "9bbd913f227f7500570426e2bf832137bbcaeac7",
     "https://totfet.aleixferre.com/favicon.ico": "aa01d96d57b19114ef8c9d510abcdc0b5949a829",
-    "https://totfet.aleixferre.com/index.html": "8d07930552057ca7155abb54b7c9882e6a73f409",
-    "https://totfet.aleixferre.com/main-QKQPA4BE.js": "27b75b09a72890cae3f29858f42e381733d61f48",
-    "https://totfet.aleixferre.com/manifest.webmanifest": "0d196826a001cad5f0654f70cd92cd2f5f729e4d",
-    "https://totfet.aleixferre.com/polyfills-RT5I6R6G.js": "fe9f024576f21ff6314cf8f8332cde58b9a12416",
-    "https://totfet.aleixferre.com/styles-PPC54B4Z.css": "0fdfce371f185ae6c63a9a8980508ce9db12cd66"
+    "https://totfet.aleixferre.com/index.html": "71f1f3b304e9ec3f08c6e6aea66bab7b9a04c1da",
+    "https://totfet.aleixferre.com/main-R2QWMXSH.js": "6a17627a4072dfef2e7cea006faf9ce953a93fb8",
+    "https://totfet.aleixferre.com/manifest.webmanifest": "e9e67d1e55080f3c68b63b7d026b75baec6cf605",
+    "https://totfet.aleixferre.com/media/openng-icons-4GST5W3O.woff2": "837c1279b6af9d297f34fdb43e6fcc9206a79f32",
+    "https://totfet.aleixferre.com/media/openng-icons-AIISD63C.svg": "6b1c6b9db761c95964e44adc87265aff9a8598ae",
+    "https://totfet.aleixferre.com/media/openng-icons-GEFHGEHP.ttf": "3b878ca7e88945a8ec25814810b95367d8977ae6",
+    "https://totfet.aleixferre.com/media/openng-icons-P53SE5CV.woff": "361e3af71bb4e515feead2f787348a92a5527158",
+    "https://totfet.aleixferre.com/polyfills-5CFQRCPP.js": "f2241e9a25858f895ce299d15f6f22e849e2fd72",
+    "https://totfet.aleixferre.com/styles-7IZCE3V2.css": "fda1f76c42058596dc14b845caf94ea07d131dc4"
   },
   "navigationUrls": [
     {
