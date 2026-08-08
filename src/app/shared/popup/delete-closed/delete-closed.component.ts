@@ -1,36 +1,23 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import {
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
-} from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { AutoFocusModule } from '@openng/optimus-ui/autofocus';
+import { ButtonModule } from '@openng/optimus-ui/button';
+import { DynamicDialogRef } from '@openng/optimus-ui/dynamicdialog';
 
 @Component({
     selector: 'app-delete-closed',
-    imports: [
-        MatFormFieldModule,
-        MatInputModule,
-        FormsModule,
-        MatButtonModule,
-        MatDialogTitle,
-        MatDialogContent,
-        MatDialogActions,
-        MatDialogClose,
-    ],
+    imports: [ButtonModule, AutoFocusModule],
     templateUrl: './delete-closed.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './delete-closed.component.scss'
 })
 export class DeleteClosedComponent {
-  constructor(public dialogRef: MatDialogRef<DeleteClosedComponent>) {}
+  constructor(private dialogRef: DynamicDialogRef) {}
 
   onNoClick(): void {
     this.dialogRef.close(false);
+  }
+
+  onYesClick(): void {
+    this.dialogRef.close(true);
   }
 }

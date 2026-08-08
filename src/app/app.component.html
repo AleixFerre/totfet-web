@@ -1,1 +1,8 @@
+<!--
+  Optimus renders toasts at this element rather than into a global overlay
+  container the way Material's snack bar did, so this must stay mounted for any
+  MessageService.add() call anywhere in the app to be visible.
+-->
+<p-toast position="top-center" />
+
 <router-outlet></router-outlet>

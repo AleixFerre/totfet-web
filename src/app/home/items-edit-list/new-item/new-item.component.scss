@@ -1,13 +1,39 @@
 .input {
   width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+// Replaces Material's form-field subscript row (mat-error + mat-hint).
+.subscript {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 1.25rem;
+  padding: 0.25rem 0.25rem 0;
+
+  .hint {
+    color: var(--p-text-muted-color);
+    white-space: nowrap;
+  }
 }
 
 .horizontal {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  align-items: center;
 }
 
+// Optimus checkbox/switch labels are siblings rather than children, unlike
+// mat-checkbox / mat-slide-toggle.
 .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 20px;
+}
+
+.horizontal .checkbox {
+  margin-bottom: 0;
 }

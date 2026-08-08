@@ -5,30 +5,27 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import {
-  MatSnackBar,
-  MatSnackBarModule,
-  MatSnackBarRef,
-  TextOnlySnackBar,
-} from '@angular/material/snack-bar';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MessageService } from '@openng/optimus-ui/api';
+import { ButtonModule } from '@openng/optimus-ui/button';
+import { FloatLabelModule } from '@openng/optimus-ui/floatlabel';
+import { InputTextModule } from '@openng/optimus-ui/inputtext';
+import { MessageModule } from '@openng/optimus-ui/message';
+import { TooltipModule } from '@openng/optimus-ui/tooltip';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
+
+/** Scopes MessageService.clear() to this component's login-error toast. */
+const LOGIN_ERROR_KEY = 'login-error';
 
 @Component({
     selector: 'app-login',
     imports: [
-        MatFormFieldModule,
-        MatInputModule,
+        FloatLabelModule,
+        InputTextModule,
         ReactiveFormsModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatTooltipModule,
-        MatIconModule
+        ButtonModule,
+        MessageModule,
+        TooltipModule
     ],
     providers: [LoginService],
     templateUrl: './login.component.html',
@@ -36,7 +33,6 @@ import { LoginService } from './login.service';
     styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  private snackBarRef!: MatSnackBarRef<TextOnlySnackBar>;
   formGroup = new FormGroup({
     list: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -45,24 +41,24 @@ export class LoginComponent {
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private messageService: MessageService
   ) {}
 
   sendRequest() {
-    this.snackBarRef?.dismiss();
+    // Replaces holding a MatSnackBarRef to dismiss the previous message.
+    this.messageService.clear(LOGIN_ERROR_KEY);
     const loginInfo = this.formGroup.value;
     this.loginService.login(loginInfo.list!, loginInfo.password!).subscribe({
       complete: () => {
         this.router.navigate(['home']);
       },
       error: () => {
-        this.snackBarRef = this._snackBar.open(
-          'Contrasenya Incorrecta',
-          'TANCAR',
-          {
-            duration: 5000,
-          }
-        );
+        this.messageService.add({
+          key: LOGIN_ERROR_KEY,
+          severity: 'error',
+          detail: 'Contrasenya Incorrecta',
+          life: 5000,
+        });
       },
     });
   }

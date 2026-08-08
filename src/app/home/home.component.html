@@ -1,22 +1,24 @@
 <p class="title">TotFet</p>
 
-<mat-tab-group
-  dynamicHeight
-  [selectedIndex]="defaultSelectedIndex"
-  (selectedTabChange)="onChangeTab($event)"
->
-  <mat-tab label="Comprar">
-    @if (itemsService.isLoading) {
-    <mat-progress-bar class="top" mode="indeterminate"></mat-progress-bar>
-    }
-    <app-items-list></app-items-list>
-  </mat-tab>
-  <mat-tab label="Editar">
-    @if (itemsService.isLoading) {
-    <mat-progress-bar class="top" mode="indeterminate"></mat-progress-bar>
-    }
-    <app-items-edit-list></app-items-edit-list>
-  </mat-tab>
-</mat-tab-group>
+<p-tabs [value]="selectedTab" (valueChange)="onChangeTab($event)">
+  <p-tablist>
+    <p-tab value="0">Comprar</p-tab>
+    <p-tab value="1">Editar</p-tab>
+  </p-tablist>
+  <p-tabpanels>
+    <p-tabpanel value="0">
+      @if (itemsService.isLoading) {
+      <p-progressbar class="top" mode="indeterminate" [style]="{ height: '4px' }" />
+      }
+      <app-items-list></app-items-list>
+    </p-tabpanel>
+    <p-tabpanel value="1">
+      @if (itemsService.isLoading) {
+      <p-progressbar class="top" mode="indeterminate" [style]="{ height: '4px' }" />
+      }
+      <app-items-edit-list></app-items-edit-list>
+    </p-tabpanel>
+  </p-tabpanels>
+</p-tabs>
 
 <app-bottom-bar-menu class="bottom-bar-menu"></app-bottom-bar-menu>

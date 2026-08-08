@@ -1,15 +1,11 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {
-  MatBottomSheet,
-  MatBottomSheetModule,
-} from '@angular/material/bottom-sheet';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MessageService } from '@openng/optimus-ui/api';
+import { ButtonModule } from '@openng/optimus-ui/button';
+import { DialogService } from '@openng/optimus-ui/dynamicdialog';
+import { DividerModule } from '@openng/optimus-ui/divider';
+import { DrawerModule } from '@openng/optimus-ui/drawer';
+import { TooltipModule } from '@openng/optimus-ui/tooltip';
 import { filter, switchMap } from 'rxjs';
 import { CardComponent } from '../../shared/card/card.component';
 import { CardAction } from '../../shared/card/card.model';
@@ -23,14 +19,14 @@ import { NewItemComponent } from './new-item/new-item.component';
     selector: 'app-items-edit-list',
     imports: [
         AsyncPipe,
-        MatBottomSheetModule,
-        MatDividerModule,
-        MatButtonModule,
-        MatIconModule,
-        MatTooltipModule,
-        MatDialogModule,
+        DrawerModule,
+        DividerModule,
+        ButtonModule,
+        TooltipModule,
         CardComponent,
+        NewItemComponent,
     ],
+    providers: [DialogService],
     templateUrl: './items-edit-list.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './items-edit-list.component.scss'
@@ -39,27 +35,34 @@ export class ItemsEditListComponent {
   openItems = this.itemsService.openItems;
   closedItems = this.itemsService.closedItems;
 
+  /** Drawer state, replacing the imperative MatBottomSheet.open() calls. */
+  editorOpen = false;
+  editingItem?: Item;
+
   readonly CardActions = [CardAction.Edit, CardAction.Delete];
   readonly CardActionCallBack: Record<CardAction, Function> = {
     [CardAction.Edit]: (item: Item) => {
-      this._bottomSheet.open(NewItemComponent, {
-        data: item,
-      });
+      this.openEditor(item);
     },
     [CardAction.Delete]: (item: Item) => {
-      this._dialog
-        .open(DeleteItemComponent, {
-          data: item
-        })
-        .afterClosed()
+      const ref = this.dialogService.open(DeleteItemComponent, {
+        // Was the <h2 mat-dialog-title> inside DeleteItemComponent.
+        header: `Esborrar "${item.name}"?`,
+        modal: true,
+        dismissableMask: true,
+        data: item,
+      });
+
+      ref?.onClose
         .pipe(
           filter((accepted: boolean) => accepted),
           switchMap(() => this.itemsService.removeItem(item))
         )
         .subscribe(() => {
-          this._snackBar.open(`${item.name} esborrat correctament`, 'TANCAR', {
-            verticalPosition: 'top',
-            duration: 5000,
+          this.messageService.add({
+            severity: 'success',
+            detail: `${item.name} esborrat correctament`,
+            life: 5000,
           });
         });
     },
@@ -68,13 +71,21 @@ export class ItemsEditListComponent {
 
   constructor(
     private itemsService: ItemsListService,
-    private _bottomSheet: MatBottomSheet,
-    private _snackBar: MatSnackBar,
-    private _dialog: MatDialog
+    private messageService: MessageService,
+    private dialogService: DialogService
   ) {}
 
   openAddMenu() {
-    this._bottomSheet.open(NewItemComponent);
+    this.openEditor(undefined);
+  }
+
+  /**
+   * The drawer keeps NewItemComponent alive between openings, so the item has
+   * to be swapped before it becomes visible for ngOnInit to read the right one.
+   */
+  private openEditor(item?: Item) {
+    this.editingItem = item;
+    this.editorOpen = true;
   }
 
   manageItemClicked(item: Item, action: CardAction) {
@@ -82,17 +93,22 @@ export class ItemsEditListComponent {
   }
 
   deleteClosed() {
-    this._dialog
-      .open(DeleteClosedComponent)
-      .afterClosed()
+    const ref = this.dialogService.open(DeleteClosedComponent, {
+      header: 'Esborrar comprats',
+      modal: true,
+      dismissableMask: true,
+    });
+
+    ref?.onClose
       .pipe(
         filter((accepted: boolean) => accepted),
         switchMap(() => this.itemsService.removeClosed())
       )
       .subscribe(() => {
-        this._snackBar.open('Compres tancades esborrades correctament', 'TANCAR', {
-          verticalPosition: 'top',
-          duration: 5000,
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Compres tancades esborrades correctament',
+          life: 5000,
         });
       });
   }

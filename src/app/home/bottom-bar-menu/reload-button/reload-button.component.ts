@@ -1,12 +1,10 @@
-import { NgClass } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { ButtonModule } from '@openng/optimus-ui/button';
 import { ItemsListService } from '../../items-list/items-list.service';
 
 @Component({
     selector: 'app-reload-button',
-    imports: [MatIconModule, MatButtonModule, NgClass],
+    imports: [ButtonModule],
     templateUrl: './reload-button.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './reload-button.component.scss'

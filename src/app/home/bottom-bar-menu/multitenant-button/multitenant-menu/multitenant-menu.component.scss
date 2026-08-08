@@ -3,6 +3,19 @@
   flex-direction: column;
   margin: 15px 0;
   align-items: flex-start;
+  gap: 0.5rem;
+}
+
+// Optimus radio labels are siblings rather than children, unlike
+// mat-radio-button.
+.radio-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  label {
+    cursor: pointer;
+  }
 }
 
 .info-button {

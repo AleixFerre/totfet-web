@@ -1,7 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MessageService } from '@openng/optimus-ui/api';
 import { Observable } from 'rxjs';
 import { CardComponent } from '../../shared/card/card.component';
 import { CardAction } from '../../shared/card/card.model';
@@ -10,7 +9,7 @@ import { Item } from './items.model';
 
 @Component({
     selector: 'app-items-list',
-    imports: [AsyncPipe, MatIconModule, CardComponent, MatSnackBarModule],
+    imports: [AsyncPipe, CardComponent],
     templateUrl: './items-list.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './items-list.component.scss'
@@ -25,14 +24,16 @@ export class ItemsListComponent {
     [CardAction.ShoppingCart]: (item: Item) => {
       this.itemsService.closeItem(item.id).subscribe({
         next: () =>
-          this._snackBar.open('Compra tancada correctament', 'TANCAR', {
-            verticalPosition: 'top',
-            duration: 5000,
+          this.messageService.add({
+            severity: 'success',
+            detail: 'Compra tancada correctament',
+            life: 5000,
           }),
         error: () =>
-          this._snackBar.open('Error al tancar la compra', 'TANCAR', {
-            verticalPosition: 'top',
-            duration: 5000,
+          this.messageService.add({
+            severity: 'error',
+            detail: 'Error al tancar la compra',
+            life: 5000,
           }),
       });
     },
@@ -40,7 +41,7 @@ export class ItemsListComponent {
 
   constructor(
     private itemsService: ItemsListService,
-    private _snackBar: MatSnackBar
+    private messageService: MessageService
   ) {}
 
   manageClicked(item: Item, action: CardAction) {

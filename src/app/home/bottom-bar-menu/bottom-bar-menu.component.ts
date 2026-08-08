@@ -1,11 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {
-  MatBottomSheet,
-  MatBottomSheetModule,
-} from '@angular/material/bottom-sheet';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { ButtonModule } from '@openng/optimus-ui/button';
+import { DrawerModule } from '@openng/optimus-ui/drawer';
 import { NewItemComponent } from '../items-edit-list/new-item/new-item.component';
 import { MultitenantButtonComponent } from './multitenant-button/multitenant-button.component';
 import { ReloadButtonComponent } from './reload-button/reload-button.component';
@@ -14,23 +9,23 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 @Component({
     selector: 'app-bottom-bar-menu',
     imports: [
-        MatBottomSheetModule,
-        MatInputModule,
-        MatIconModule,
-        MatButtonModule,
+        DrawerModule,
+        ButtonModule,
         SearchBarComponent,
         ReloadButtonComponent,
         MultitenantButtonComponent,
+        NewItemComponent,
     ],
     templateUrl: './bottom-bar-menu.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './bottom-bar-menu.component.scss'
 })
 export class BottomBarMenuComponent {
-  constructor(private _bottomSheet: MatBottomSheet) {}
+  /** Drawer state, replacing MatBottomSheet.open(NewItemComponent). */
+  addOpen = false;
 
   openAddMenu() {
-    this._bottomSheet.open(NewItemComponent);
+    this.addOpen = true;
   }
 
   goToHelp() {

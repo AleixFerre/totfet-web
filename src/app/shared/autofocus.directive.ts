@@ -1,14 +1,19 @@
-import { Directive, OnInit } from '@angular/core';
-import { MatInput } from '@angular/material/input';
+import { Directive, ElementRef, OnInit, inject } from '@angular/core';
 
+/**
+ * Focuses the host input on init.
+ *
+ * Previously injected Material's `MatInput` and called its `focus()`; now works
+ * against the native element so it is independent of any UI library.
+ */
 @Directive({
   standalone: true,
-  selector: '[matInputAutofocus]',
+  selector: '[appAutofocus]',
 })
 export class AutofocusDirective implements OnInit {
-  constructor(private matInput: MatInput) { }
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
 
   ngOnInit() {
-    setTimeout(() => this.matInput.focus());
+    setTimeout(() => this.host.nativeElement.focus());
   }
 }

@@ -7,14 +7,20 @@
     <p class="label">No hi ha res per comprar</p>
   }
 
-  <mat-divider></mat-divider>
+  <p-divider></p-divider>
 
   <div class="title-container">
     <h4 class="title">Comprat ({{ (closedItems | async)?.length }})</h4>
     @if ((closedItems | async)?.length! > 0) {
-      <button mat-icon-button color="warn" matTooltip="Esborrar tots els comprats" (click)="deleteClosed()">
-        <mat-icon>delete_forever</mat-icon>
-      </button>
+      <p-button
+        [text]="true"
+        [rounded]="true"
+        severity="danger"
+        icon="pi pi-trash"
+        pTooltip="Esborrar tots els comprats"
+        ariaLabel="Esborrar tots els comprats"
+        (onClick)="deleteClosed()"
+      />
     }
   </div>
 
@@ -25,3 +31,19 @@
   }
   <div class="final"></div>
 }
+
+<!--
+  Replaces MatBottomSheet.open(NewItemComponent, { data: item }). The @if keeps
+  MatBottomSheet's semantics of a fresh component instance per opening, so
+  NewItemComponent.ngOnInit re-populates the form for each item.
+-->
+<p-drawer
+  position="bottom"
+  appendTo="body"
+  [(visible)]="editorOpen"
+  [style]="{ height: 'auto' }"
+>
+  @if (editorOpen) {
+    <app-new-item [item]="editingItem" (done)="editorOpen = false" />
+  }
+</p-drawer>

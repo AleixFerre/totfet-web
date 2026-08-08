@@ -1,23 +1,20 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {
-  MatBottomSheet,
-  MatBottomSheetModule,
-} from '@angular/material/bottom-sheet';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { ButtonModule } from '@openng/optimus-ui/button';
+import { DrawerModule } from '@openng/optimus-ui/drawer';
 import { MultitenantMenuComponent } from './multitenant-menu/multitenant-menu.component';
 
 @Component({
     selector: 'app-multitenant-button',
-    imports: [MatButtonModule, MatIconModule, MatBottomSheetModule],
+    imports: [ButtonModule, DrawerModule, MultitenantMenuComponent],
     templateUrl: './multitenant-button.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './multitenant-button.component.scss'
 })
 export class MultitenantButtonComponent {
-  constructor(private _bottomSheet: MatBottomSheet) {}
+  /** Drawer state, replacing MatBottomSheet.open(MultitenantMenuComponent). */
+  menuOpen = false;
 
   openMenu() {
-    this._bottomSheet.open(MultitenantMenuComponent);
+    this.menuOpen = true;
   }
 }

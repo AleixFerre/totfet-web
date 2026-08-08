@@ -1,5 +1,7 @@
-<button mat-icon-button aria-label="Refresh" (click)="refreshItems()">
-  <mat-icon [ngClass]="{ rotating: rotating }" class="rotating">
-    refresh
-  </mat-icon>
-</button>
+<p-button
+  [text]="true"
+  [rounded]="true"
+  [icon]="rotating ? 'pi pi-refresh pi-spin' : 'pi pi-refresh'"
+  ariaLabel="Refresh"
+  (onClick)="refreshItems()"
+/>

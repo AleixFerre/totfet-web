@@ -1,24 +1,38 @@
 @if (openSearchBox) {
-<mat-form-field class="search-box" appearance="outline">
-  <mat-label>Buscar</mat-label>
+<p-inputgroup class="search-box">
   <input
-    matInput
-    matInputAutofocus
+    pInputText
+    appAutofocus
     autofocus
     type="text"
+    variant="outlined"
+    placeholder="Buscar"
     (blur)="closeSearch()"
     (input)="onSearchBoxChange($event)"
   />
-  <button matSuffix mat-icon-button aria-label="Clear" (click)="closeSearch()">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
+  <p-inputgroup-addon>
+    <p-button
+      [text]="true"
+      icon="pi pi-times"
+      ariaLabel="Clear"
+      (onClick)="closeSearch()"
+    />
+  </p-inputgroup-addon>
+</p-inputgroup>
 
-<button mat-icon-button aria-label="Close" (click)="openSearchBox = false">
-  <mat-icon>close</mat-icon>
-</button>
+<p-button
+  [text]="true"
+  [rounded]="true"
+  icon="pi pi-times"
+  ariaLabel="Close"
+  (onClick)="openSearchBox = false"
+/>
 } @else {
-<button mat-icon-button aria-label="Search" (click)="openSearchBox = true">
-  <mat-icon>search</mat-icon>
-</button>
+<p-button
+  [text]="true"
+  [rounded]="true"
+  icon="pi pi-search"
+  ariaLabel="Search"
+  (onClick)="openSearchBox = true"
+/>
 }

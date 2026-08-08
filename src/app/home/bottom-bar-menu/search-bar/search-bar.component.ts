@@ -1,13 +1,20 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { ButtonModule } from '@openng/optimus-ui/button';
+import { InputGroupModule } from '@openng/optimus-ui/inputgroup';
+import { InputGroupAddonModule } from '@openng/optimus-ui/inputgroupaddon';
+import { InputTextModule } from '@openng/optimus-ui/inputtext';
 import { AutofocusDirective } from '../../../shared/autofocus.directive';
 import { ItemsListService } from '../../items-list/items-list.service';
 
 @Component({
     selector: 'app-search-bar',
-    imports: [AutofocusDirective, MatIconModule, MatButtonModule, MatInputModule],
+    imports: [
+        AutofocusDirective,
+        ButtonModule,
+        InputGroupModule,
+        InputGroupAddonModule,
+        InputTextModule
+    ],
     templateUrl: './search-bar.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './search-bar.component.scss'

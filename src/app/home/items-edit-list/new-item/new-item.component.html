@@ -1,66 +1,92 @@
 <div [formGroup]="itemForm" (keydown.enter)="$event.preventDefault(); submitForm()">
   <h3>{{ item ? "Editar" : "Afegir" }} compra</h3>
-  <mat-form-field appearance="fill" class="input">
-    <mat-label>Nom</mat-label>
-    <input
-      matInput
-      matInputAutofocus
-      autofocus
-      #nameInput
-      formControlName="name"
-      type="text"
-      maxlength="100"
-      placeholder="Nom"
-      [matAutocomplete]="auto"
-      required
-    />
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      @for (item of filteredItems | async; track item) {
-        <mat-option [value]="item">{{ item }}</mat-option>
+
+  @let name = itemForm.controls.name;
+  <div class="input">
+    <p-floatlabel variant="in">
+      <p-autocomplete
+        inputId="name"
+        formControlName="name"
+        [suggestions]="filteredItems"
+        (completeMethod)="filterItems($event)"
+        [autoOptionFocus]="true"
+        [autofocus]="true"
+        appendTo="body"
+        fluid
+      />
+      <label for="name">Nom</label>
+    </p-floatlabel>
+    <div class="subscript">
+      <!-- Errors are gated on `touched` because Material's form field only
+           revealed mat-error once the control had been touched. -->
+      <span>
+        @if (name.touched && name.hasError('required')) {
+          <p-message severity="error" variant="simple" size="small">
+            El <b>nom</b> és obligatori
+          </p-message>
+        } @else if (name.touched && name.hasError('maxlength')) {
+          <p-message severity="error" variant="simple" size="small">
+            El <b>nom</b> ha de tenir menys de 100 caràcters
+          </p-message>
+        }
+      </span>
+      <small class="hint">{{ name.value?.length ?? 0 }} / 100</small>
+    </div>
+  </div>
+
+  @let amount = itemForm.controls.amount;
+  <div class="input">
+    <p-floatlabel variant="in">
+      <input
+        pInputText
+        id="amount"
+        formControlName="amount"
+        type="number"
+        min="1"
+        max="100"
+        required
+        fluid
+        [invalid]="amount.touched && amount.invalid"
+      />
+      <label for="amount">Quantitat</label>
+    </p-floatlabel>
+    @if (amount.touched) {
+      @if (amount.hasError('required')) {
+        <p-message severity="error" variant="simple" size="small">
+          La <b>quantitat</b> és obligatoria
+        </p-message>
+      } @else if (amount.hasError('min')) {
+        <p-message severity="error" variant="simple" size="small">
+          La <b>quantitat</b> ha de ser com a mínim 1
+        </p-message>
+      } @else if (amount.hasError('max')) {
+        <p-message severity="error" variant="simple" size="small">
+          La <b>quantitat</b> ha de ser menor de 100
+        </p-message>
       }
-    </mat-autocomplete>
-    <mat-hint align="end">
-      {{ itemForm.get("name")?.value?.length }} / 100
-    </mat-hint>
-    @if (itemForm.get('name')?.hasError('required')) {
-      <mat-error>El <b>nom</b> és obligatori</mat-error>
     }
-  </mat-form-field>
-  <mat-form-field appearance="fill" class="input">
-    <mat-label>Quantitat</mat-label>
-    <input
-      matInput
-      formControlName="amount"
-      type="number"
-      min="1"
-      max="100"
-      placeholder="Quantitat"
-      required
-    />
-    @if (itemForm.get('amount')?.hasError('required')) {
-      <mat-error>La <b>quantitat</b> és obligatoria</mat-error>
-    } @if (itemForm.get('amount')?.hasError('min')) {
-      <mat-error>La <b>quantitat</b> ha de ser com a mínim 1</mat-error>
-    } @if (itemForm.get('amount')?.hasError('max')) {
-      <mat-error>La <b>quantitat</b> ha de ser menor de 100</mat-error>
-    }
-  </mat-form-field>
+  </div>
 
   @if (item) {
-    <mat-slide-toggle class="checkbox" formControlName="closed"> {{ itemForm.get('closed')?.value ? 'Comprat' : 'Per comprar' }} </mat-slide-toggle>
+    <div class="checkbox">
+      <p-toggleswitch inputId="closed" formControlName="closed" />
+      <label for="closed">
+        {{ itemForm.get('closed')?.value ? 'Comprat' : 'Per comprar' }}
+      </label>
+    </div>
   }
 </div>
 
 <div class="horizontal">
-  <button
-    mat-raised-button
-    color="primary"
+  <p-button
+    [label]="item ? 'Guardar' : 'Afegir'"
     [disabled]="itemForm.invalid"
-    (click)="submitForm()"
-  >
-    {{ item ? "Guardar" : "Afegir" }}
-  </button>
+    (onClick)="submitForm()"
+  />
   @if (!item) {
-    <mat-checkbox [(ngModel)]="addMore"> Afegir-ne més </mat-checkbox>
+    <div class="checkbox">
+      <p-checkbox inputId="addMore" [binary]="true" [(ngModel)]="addMore" />
+      <label for="addMore">Afegir-ne més</label>
+    </div>
   }
 </div>

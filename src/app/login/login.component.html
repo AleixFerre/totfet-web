@@ -1,37 +1,57 @@
-<a href="./help" class="help-icon">
-  <mat-icon color="primary" matTooltip="Ajuda">help</mat-icon>
+<a href="./help" class="help-icon" pTooltip="Ajuda" aria-label="Ajuda">
+  <i class="pi pi-question-circle"></i>
 </a>
 
 <form [formGroup]="formGroup" class="centered">
   <h1 class="title">Tot Fet</h1>
-  <mat-form-field appearance="fill" class="input">
-    <mat-label>Nom de la llista</mat-label>
-    <input
-      matInput
-      formControlName="list"
-      type="text"
-      placeholder="Nom de la llista"
-      required
-    />
-    @if (formGroup.get('list')!.hasError('required')) {
-    <mat-error>El nom de la llista és obligatori</mat-error>
-    }
-  </mat-form-field>
-  <mat-form-field appearance="fill" class="input">
-    <mat-label>Contrasenya</mat-label>
-    <input
-      matInput
-      formControlName="password"
-      type="password"
-      placeholder="Password"
-      required
-    />
-    @if (formGroup.get('password')!.hasError('required')) {
-    <mat-error>La contrasenya és obligatoria</mat-error>
-    }
-  </mat-form-field>
 
-  <button mat-raised-button color="primary" [disabled]="formGroup.invalid" (click)="sendRequest()">
-    Iniciar Sessió
-  </button>
+  @let list = formGroup.controls.list;
+  <div class="input">
+    <p-floatlabel variant="in">
+      <input
+        pInputText
+        id="list"
+        formControlName="list"
+        type="text"
+        required
+        fluid
+        [invalid]="list.touched && list.invalid"
+      />
+      <label for="list">Nom de la llista</label>
+    </p-floatlabel>
+    <!-- Gated on `touched` because Material's form field only revealed
+         mat-error once the control had been touched or the form submitted. -->
+    @if (list.touched && list.hasError('required')) {
+      <p-message severity="error" variant="simple" size="small">
+        El nom de la llista és obligatori
+      </p-message>
+    }
+  </div>
+
+  @let password = formGroup.controls.password;
+  <div class="input">
+    <p-floatlabel variant="in">
+      <input
+        pInputText
+        id="password"
+        formControlName="password"
+        type="password"
+        required
+        fluid
+        [invalid]="password.touched && password.invalid"
+      />
+      <label for="password">Contrasenya</label>
+    </p-floatlabel>
+    @if (password.touched && password.hasError('required')) {
+      <p-message severity="error" variant="simple" size="small">
+        La contrasenya és obligatoria
+      </p-message>
+    }
+  </div>
+
+  <p-button
+    label="Iniciar Sessió"
+    [disabled]="formGroup.invalid"
+    (onClick)="sendRequest()"
+  />
 </form>

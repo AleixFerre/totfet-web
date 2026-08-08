@@ -1,3 +1,24 @@
-<button mat-icon-button aria-label="Open multitenant menu" (click)="openMenu()">
-  <mat-icon> list </mat-icon>
-</button>
+<p-button
+  [text]="true"
+  [rounded]="true"
+  icon="pi pi-list"
+  ariaLabel="Open multitenant menu"
+  (onClick)="openMenu()"
+/>
+
+<!-- Replaces MatBottomSheet.open(MultitenantMenuComponent). The menu emits
+     `done` both when a list is picked and when the add-list dialog logs out,
+     which is what used to happen via the MatBottomSheetRef threaded through
+     MAT_DIALOG_DATA. -->
+<!-- appendTo="body": this sits inside the fixed, z-indexed bottom bar, whose
+     stacking context would otherwise trap the drawer under the overlay mask. -->
+<p-drawer
+  position="bottom"
+  appendTo="body"
+  [(visible)]="menuOpen"
+  [style]="{ height: 'auto' }"
+>
+  @if (menuOpen) {
+    <app-multitenant-menu (done)="menuOpen = false" />
+  }
+</p-drawer>

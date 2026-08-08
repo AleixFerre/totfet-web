@@ -3,8 +3,12 @@
   <span class="name">{{ item.name }}</span>
   <div class="divider"></div>
   @for (action of actions; track action; let i = $index) {
-    <button mat-icon-button (click)="onClick.next(action)">
-      <mat-icon [color]="CardActionColors[action]">{{ CardActionIcons[action] }}</mat-icon>
-    </button>
+    <p-button
+      [text]="true"
+      [rounded]="true"
+      [icon]="CardActionIcons[action]"
+      [severity]="CardActionSeverities[action]"
+      (onClick)="onClick.next(action)"
+    />
   }
 </div>

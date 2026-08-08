@@ -1,29 +1,28 @@
-import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
-import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { MatButtonModule } from '@angular/material/button';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogContent,
-  MatDialogModule,
-  MatDialogTitle,
-} from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { AutoFocusModule } from '@openng/optimus-ui/autofocus';
+import { ButtonModule } from '@openng/optimus-ui/button';
+import { DynamicDialogRef } from '@openng/optimus-ui/dynamicdialog';
 
 @Component({
     selector: 'app-multitenant-add',
-    imports: [MatDialogModule, MatButtonModule, MatDialogTitle, MatDialogContent],
+    imports: [ButtonModule, AutoFocusModule],
     templateUrl: './multitenant-add.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './multitenant-add.component.scss'
 })
 export class MultitenantAddComponent {
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { bottomBarRef: MatBottomSheetRef },
-    private router: Router
-  ) {}
+  constructor(private dialogRef: DynamicDialogRef) {}
 
+  cancel() {
+    this.dialogRef.close(false);
+  }
+
+  /**
+   * Reports that the user wants to log out. The parent menu handles closing the
+   * drawer and navigating; this component used to do it itself by dismissing a
+   * MatBottomSheetRef passed in through MAT_DIALOG_DATA.
+   */
   closeSession() {
-    this.data.bottomBarRef.dismiss();
-    this.router.navigate(['/login']);
+    this.dialogRef.close(true);
   }
 }

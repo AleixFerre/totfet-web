@@ -7,17 +7,32 @@
   text-align: center;
 }
 
-:host ::ng-deep .mat-mdc-tab-header {
-  top: 0;
-  z-index: 1000;
-  background-color: #2c2c2c;
+// Was `:host ::ng-deep .mat-mdc-tab-header`. p-tablist is an element in this
+// component's own template, so it carries the emulated-encapsulation attribute
+// and can be styled directly — no ::ng-deep needed.
+p-tablist {
+  display: block;
   position: sticky;
   position: -webkit-sticky; /* macOS/iOS Safari */
+  top: 0;
+  z-index: 1000;
+  background-color: var(--p-surface-900);
+}
+
+// `display: block` gives the absolutely-positioned progress bar a containing
+// block. The :not([hidden]) guard is essential: Optimus marks the inactive
+// panel with the `hidden` attribute, and a bare `display: block` here would
+// override the UA stylesheet's `[hidden] { display: none }` and render both
+// tab panels stacked on top of each other.
+p-tabpanel:not([hidden]) {
+  display: block;
+  position: relative;
 }
 
 .top {
   position: absolute;
   top: 0;
+  width: 100%;
 }
 
 .bottom-bar-menu {
@@ -27,5 +42,5 @@
   height: 3rem;
   width: calc(100% - 1rem);
   z-index: 1000;
-  background-color: hsl(0, 0%, 15%);
+  background-color: var(--p-surface-800);
 }

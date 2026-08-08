@@ -1,10 +1,10 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { ButtonModule } from '@openng/optimus-ui/button';
 import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-not-found',
-    imports: [MatButtonModule],
+    imports: [ButtonModule],
     templateUrl: './not-found.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './not-found.component.scss'

@@ -1,11 +1,17 @@
-import { JsonPipe, TitleCasePipe } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
-import { MatRadioModule } from '@angular/material/radio';
+import { Router } from '@angular/router';
+import { ButtonModule } from '@openng/optimus-ui/button';
+import { DialogService } from '@openng/optimus-ui/dynamicdialog';
+import { RadioButtonModule } from '@openng/optimus-ui/radiobutton';
+import { filter } from 'rxjs';
 import { LOCAL_STORAGE_KEYS } from '../../../../shared/globals';
 import { List, listFromArray } from '../../../../shared/list.model';
 import { ItemsListService } from '../../../items-list/items-list.service';
@@ -14,27 +20,27 @@ import { MultitenantAddComponent } from './multitenant-add/multitenant-add.compo
 @Component({
     selector: 'app-multitenant-menu',
     imports: [
-        MatRadioModule,
-        MatRadioModule,
+        RadioButtonModule,
         FormsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatDialogModule,
+        ButtonModule,
         TitleCasePipe,
-        JsonPipe,
     ],
+    providers: [DialogService],
     templateUrl: './multitenant-menu.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './multitenant-menu.component.scss'
 })
 export class MultitenantMenuComponent implements OnInit {
+  /** Asks the host drawer to close. */
+  @Output() done = new EventEmitter<void>();
+
   selectedList!: List;
   lists: List[] = [];
 
   constructor(
     private itemsService: ItemsListService,
-    private dialog: MatDialog,
-    private _bottomSheetRef: MatBottomSheetRef<MultitenantMenuComponent>
+    private dialogService: DialogService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,14 +58,24 @@ export class MultitenantMenuComponent implements OnInit {
       `${listSelected.name}:${listSelected.password}`
     );
     this.itemsService.refreshItems();
-    this._bottomSheetRef.dismiss();
+    this.done.emit();
   }
 
   openInfo() {
-    this.dialog.open(MultitenantAddComponent, {
-      data: {
-        bottomBarRef: this._bottomSheetRef,
-      },
+    const ref = this.dialogService.open(MultitenantAddComponent, {
+      header: 'Vols afegir una llista?',
+      modal: true,
+      dismissableMask: true,
     });
+
+    // The dialog used to receive this component's MatBottomSheetRef through
+    // MAT_DIALOG_DATA so it could dismiss the sheet itself. It now just reports
+    // whether the user chose to log out, and the close bubbles up from here.
+    ref?.onClose
+      .pipe(filter((logout: boolean) => logout))
+      .subscribe(() => {
+        this.done.emit();
+        this.router.navigate(['/login']);
+      });
   }
 }

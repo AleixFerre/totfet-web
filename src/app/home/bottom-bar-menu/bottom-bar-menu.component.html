@@ -3,11 +3,37 @@
   <app-reload-button></app-reload-button>
   <app-multitenant-button></app-multitenant-button>
   <div class="divider"></div>
-  <button mat-icon-button aria-label="Open multitenant menu" (click)="goToHelp()">
-    <mat-icon> help </mat-icon>
-  </button>
+  <p-button
+    [text]="true"
+    [rounded]="true"
+    icon="pi pi-question-circle"
+    ariaLabel="Ajuda"
+    (onClick)="goToHelp()"
+  />
 </div>
 
-<button mat-fab color="primary" class="add-button" (click)="openAddMenu()">
-  <mat-icon>add</mat-icon>
-</button>
+<p-button
+  class="add-button"
+  [rounded]="true"
+  [raised]="true"
+  size="large"
+  icon="pi pi-plus"
+  ariaLabel="Afegir compra"
+  (onClick)="openAddMenu()"
+/>
+
+<!-- Replaces MatBottomSheet.open(NewItemComponent); the @if keeps the
+     one-fresh-instance-per-opening behaviour the bottom sheet had.
+     appendTo="body" is required: this host is `position: fixed; z-index: 1000`,
+     which forms a stacking context that would trap the drawer beneath the
+     body-level overlay mask and swallow every click. -->
+<p-drawer
+  position="bottom"
+  appendTo="body"
+  [(visible)]="addOpen"
+  [style]="{ height: 'auto' }"
+>
+  @if (addOpen) {
+    <app-new-item (done)="addOpen = false" />
+  }
+</p-drawer>

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
+import { ProgressBarModule } from '@openng/optimus-ui/progressbar';
+import { TabsModule } from '@openng/optimus-ui/tabs';
 import { LOCAL_STORAGE_KEYS } from '../shared/globals';
 import { List, listFromArray } from '../shared/list.model';
 import { BottomBarMenuComponent } from './bottom-bar-menu/bottom-bar-menu.component';
@@ -14,15 +14,20 @@ import { ItemsListService } from './items-list/items-list.service';
         ItemsListComponent,
         ItemsEditListComponent,
         BottomBarMenuComponent,
-        MatTabsModule,
-        MatProgressBarModule,
+        TabsModule,
+        ProgressBarModule,
     ],
     templateUrl: './home.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  defaultSelectedIndex = localStorage.getItem(LOCAL_STORAGE_KEYS.SELECTED_TAB);
+  /**
+   * Optimus tabs are keyed by an arbitrary `value` rather than a numeric index,
+   * so the tabs use '0'/'1' to keep the stored value byte-identical to what
+   * MatTabChangeEvent.index used to persist.
+   */
+  selectedTab = localStorage.getItem(LOCAL_STORAGE_KEYS.SELECTED_TAB) ?? '0';
   lists: List[] = JSON.parse(
     localStorage.getItem(LOCAL_STORAGE_KEYS.LISTS) || '[]'
   );
@@ -34,11 +39,9 @@ export class HomeComponent {
     this.defaultListSetup();
   }
 
-  onChangeTab(event: MatTabChangeEvent) {
-    localStorage.setItem(
-      LOCAL_STORAGE_KEYS.SELECTED_TAB,
-      event.index.toString()
-    );
+  onChangeTab(value: string | number | undefined) {
+    this.selectedTab = String(value);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.SELECTED_TAB, this.selectedTab);
   }
 
   private defaultListSetup() {
