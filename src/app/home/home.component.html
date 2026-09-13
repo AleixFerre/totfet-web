@@ -10,13 +10,17 @@
       @if (itemsService.isLoading) {
       <p-progressbar class="top" mode="indeterminate" [style]="{ height: '4px' }" />
       }
+      @if (!itemsService.hasNothingToShow) {
       <app-items-list></app-items-list>
+      }
     </p-tabpanel>
     <p-tabpanel value="1">
       @if (itemsService.isLoading) {
       <p-progressbar class="top" mode="indeterminate" [style]="{ height: '4px' }" />
       }
+      @if (!itemsService.hasNothingToShow) {
       <app-items-edit-list></app-items-edit-list>
+      }
     </p-tabpanel>
   </p-tabpanels>
 </p-tabs>

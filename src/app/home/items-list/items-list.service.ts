@@ -7,7 +7,7 @@ import {
   combineLatest,
   map,
   tap,
-  throwError
+  throwError,
 } from 'rxjs';
 import { url } from '../../shared/globals';
 import { Item } from './items.model';
@@ -24,18 +24,22 @@ export class ItemsListService {
     this._search.asObservable(),
   ]).pipe(
     map(([items, search]) =>
-      items.filter((i) => i.name.toLowerCase().includes(search.toLowerCase()))
-    )
+      items.filter((i) => i.name.toLowerCase().includes(search.toLowerCase())),
+    ),
   );
 
   public openItems = this.items.pipe(
-    map((items) => items.filter((i) => !i.closed))
+    map((items) => items.filter((i) => !i.closed)),
   );
   public closedItems = this.items.pipe(
-    map((items) => items.filter((i) => i.closed))
+    map((items) => items.filter((i) => i.closed)),
   );
 
   public isLoading = true;
+
+  public get hasNothingToShow(): boolean {
+    return this.isLoading && this._items.value.length === 0;
+  }
 
   constructor(private http: HttpClient) {}
 
@@ -65,7 +69,7 @@ export class ItemsListService {
         tap((newItem) => {
           this._items.next([...this._items.value, newItem]);
           this.isLoading = false;
-        })
+        }),
       );
     }
 
@@ -89,7 +93,7 @@ export class ItemsListService {
         list[index] = newItem;
         this._items.next(list);
         this.isLoading = false;
-      })
+      }),
     );
   }
 
@@ -99,7 +103,7 @@ export class ItemsListService {
       tap(() => {
         this._items.next(this._items.value.filter((i) => !i.closed));
         this.isLoading = false;
-      })
+      }),
     );
   }
 
@@ -112,7 +116,7 @@ export class ItemsListService {
         list.splice(index, 1);
         this._items.next(list);
         this.isLoading = false;
-      })
+      }),
     );
   }
 
@@ -128,7 +132,7 @@ export class ItemsListService {
         list[index].closed = false;
         this._items.next(list);
         return throwError(() => err);
-      })
+      }),
     );
   }
 }
