@@ -23,7 +23,8 @@
 - [x] Multitenant option
   - Quick way to change between known lists (log out)
 - [x] Help page
-- [ ] BUG: When filtering by search field, the app goes inconsistent when marking as bought.
+- [x] BUG: When filtering by search field, the app goes inconsistent when marking as bought.
+  - The search input cleared the filter on blur, which fired on the same tap that hit a card. Combined with `track $index`, the tapped button was reused for a different item and the click marked the wrong one as bought.
 - [ ] BUG: You can enter decimals on the quantity and it breaks on the server.
 - [ ] BUG: It does not show any alert when adding a new item that already exists in the bought list.
 - [ ] Edit the list name?

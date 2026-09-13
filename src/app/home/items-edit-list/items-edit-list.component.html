@@ -1,7 +1,7 @@
 @if (openItems | async; as items) {
   <h4 class="title">Per comprar ({{ (openItems | async)?.length }})</h4>
 
-  @for (item of openItems | async; track $index) {
+  @for (item of openItems | async; track item.id) {
     <app-card [item]="item" [actions]="CardActions" (onClick)="manageItemClicked(item, $event)"></app-card>
   } @empty {
     <p class="label">No hi ha res per comprar</p>

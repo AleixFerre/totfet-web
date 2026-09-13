@@ -1,5 +1,5 @@
 @if (items | async; as items) {
-  @for (item of items; track $index) {
+  @for (item of items; track item.id) {
     <app-card [item]="item" [actions]="CardActions" (onClick)="manageClicked(item, $event)"></app-card>
   } @empty {
     <p class="label">No hi ha res per comprar</p>

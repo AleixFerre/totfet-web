@@ -121,18 +121,32 @@ export class ItemsListService {
   }
 
   public closeItem(itemId: number): Observable<void> {
-    const list = [...this._items.value];
-    const index = list.findIndex((item) => item.id === itemId);
-    list[index].closed = true;
-    this._items.next(list);
+    if (!this.setClosed(itemId, true)) {
+      return throwError(() => new Error(`No such item: ${itemId}`));
+    }
 
     return this.http.post<void>(`${url}/items/close`, { id: itemId }).pipe(
       catchError((err) => {
-        // revert the changes and rethrow the error
-        list[index].closed = false;
-        this._items.next(list);
+        // Re-resolve the item instead of re-emitting the snapshot taken before
+        // the request: a refresh or an add that landed in between would
+        // otherwise be wiped out by the revert.
+        this.setClosed(itemId, false);
         return throwError(() => err);
       }),
     );
+  }
+
+  private setClosed(itemId: number, closed: boolean): boolean {
+    const list = this._items.value;
+    const index = list.findIndex((item) => item.id === itemId);
+
+    if (index === -1) {
+      return false;
+    }
+
+    const next = [...list];
+    next[index] = { ...next[index], closed };
+    this._items.next(next);
+    return true;
   }
 }

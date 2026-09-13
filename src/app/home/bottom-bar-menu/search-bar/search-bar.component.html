@@ -6,7 +6,6 @@
     autofocus
     type="text"
     placeholder="Buscar"
-    (blur)="closeSearch()"
     (input)="onSearchBoxChange($event)"
   />
   <p-inputgroup-addon>
@@ -24,7 +23,7 @@
   [rounded]="true"
   icon="pi pi-times"
   ariaLabel="Close"
-  (onClick)="openSearchBox = false"
+  (onClick)="closeSearch()"
 />
 } @else {
 <p-button
