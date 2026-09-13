@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1786150868072,
+  "timestamp": 1789266516429,
   "index": "https://totfet.aleixferre.com/index.html",
   "assetGroups": [
     {
@@ -13,9 +13,9 @@
       "urls": [
         "https://totfet.aleixferre.com/favicon.ico",
         "https://totfet.aleixferre.com/index.html",
-        "https://totfet.aleixferre.com/main-R2QWMXSH.js",
+        "https://totfet.aleixferre.com/main-3YDUTG2S.js",
         "https://totfet.aleixferre.com/manifest.webmanifest",
-        "https://totfet.aleixferre.com/polyfills-5CFQRCPP.js",
+        "https://totfet.aleixferre.com/polyfills-LVNOU2XZ.js",
         "https://totfet.aleixferre.com/styles-7IZCE3V2.css"
       ],
       "patterns": []
@@ -57,14 +57,14 @@
     "https://totfet.aleixferre.com/assets/icons/icon-72x72.png": "1de371f5b5807349367f909bfe2a1bb5441e2a23",
     "https://totfet.aleixferre.com/assets/icons/icon-96x96.png": "6726406468296c0bcdf9a5ab05f7017d25570c05",
     "https://totfet.aleixferre.com/favicon.ico": "aa01d96d57b19114ef8c9d510abcdc0b5949a829",
-    "https://totfet.aleixferre.com/index.html": "71f1f3b304e9ec3f08c6e6aea66bab7b9a04c1da",
-    "https://totfet.aleixferre.com/main-R2QWMXSH.js": "6a17627a4072dfef2e7cea006faf9ce953a93fb8",
+    "https://totfet.aleixferre.com/index.html": "d98903c5f9bd194bee27520261ffaf83efa02d88",
+    "https://totfet.aleixferre.com/main-3YDUTG2S.js": "55cdf9a601ee0b494ece79aa3aafd322a444b539",
     "https://totfet.aleixferre.com/manifest.webmanifest": "e9e67d1e55080f3c68b63b7d026b75baec6cf605",
     "https://totfet.aleixferre.com/media/openng-icons-4GST5W3O.woff2": "837c1279b6af9d297f34fdb43e6fcc9206a79f32",
     "https://totfet.aleixferre.com/media/openng-icons-AIISD63C.svg": "6b1c6b9db761c95964e44adc87265aff9a8598ae",
     "https://totfet.aleixferre.com/media/openng-icons-GEFHGEHP.ttf": "3b878ca7e88945a8ec25814810b95367d8977ae6",
     "https://totfet.aleixferre.com/media/openng-icons-P53SE5CV.woff": "361e3af71bb4e515feead2f787348a92a5527158",
-    "https://totfet.aleixferre.com/polyfills-5CFQRCPP.js": "f2241e9a25858f895ce299d15f6f22e849e2fd72",
+    "https://totfet.aleixferre.com/polyfills-LVNOU2XZ.js": "2f9a12d1b36d16ea2c21645c118124acea70f07e",
     "https://totfet.aleixferre.com/styles-7IZCE3V2.css": "fda1f76c42058596dc14b845caf94ea07d131dc4"
   },
   "navigationUrls": [
